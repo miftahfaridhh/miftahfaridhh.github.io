@@ -256,6 +256,19 @@
         }
 
         /* ===== About ===== */
+        .about-photo {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            object-fit: cover;
+            object-position: center top;
+            border: 3px solid var(--border);
+            margin-bottom: 1.5rem;
+            transition: border-color 0.3s;
+        }
+
+        .about-photo:hover { border-color: var(--accent); }
+
         .about-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -897,6 +910,7 @@
                     </div>
                 </div>
                 <div class="about-details reveal">
+                    <img src="asset/photo-web.jpg" alt="Muhammad Miftah Faridh" class="about-photo" width="180" height="180">
                     <div class="detail-item">
                         <div class="detail-icon">🎓</div>
                         <div class="detail-content">
