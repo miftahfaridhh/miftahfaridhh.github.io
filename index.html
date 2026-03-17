@@ -1218,23 +1218,225 @@
         </div>
     </section>
 
-    <!-- Web Projects -->
+    <!-- Portfolio Projects -->
     <section id="web-projects">
         <div class="section-inner">
-            <span class="section-label reveal">Personal Projects</span>
-            <h2 class="section-title reveal">Web &amp; Software Portfolio</h2>
-            <p class="section-desc reveal">Full-stack web applications and software projects built during university and professional development.</p>
+            <span class="section-label reveal">Portfolio</span>
+            <h2 class="section-title reveal">Projects &amp; Research</h2>
+            <p class="section-desc reveal">AI/ML research, Edge AI deployments, IoT systems, and full-stack applications from academic research and personal development.</p>
+
+            <!-- AI & Deep Learning Research -->
+            <h3 class="reveal" style="color: var(--accent); margin: 2.5rem 0 1.5rem; font-size: 1.2rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em;">AI &amp; Deep Learning Research</h3>
+            <div class="web-projects-grid">
+                <div class="web-project-card reveal">
+                    <div class="web-project-type">Deep Learning · Energy Forecasting</div>
+                    <h3>PV Power Generation Forecasting API</h3>
+                    <p><strong>Purpose:</strong> Predict next-day photovoltaic solar power generation across 10 solar sites in South Korea using deep learning models trained on KMA weather data.<br>
+                    <strong>Methodology:</strong> Compares 6 DL architectures — BiLSTM, Stacked BiLSTM, LSTM, ConvLSTM, RNN — trained on 12 weather features (soil temp, solar radiation, cloud cover, etc.) with 24-hour sliding window input producing 24-hour forecasts. MinMax normalization with tanh activation.<br>
+                    <strong>Findings:</strong> Published in Sensors 2023 (MDPI) and ICUFN 2023. Deployed as Flask REST API with automated daily predictions at 10:00 and 16:00 KST.<br>
+                    <strong>Evaluation:</strong> MSE, MAE, MAPE metrics per site per model. BiLSTM variants generally achieved lowest prediction error.</p>
+                    <div class="web-project-tech">
+                        <span>TensorFlow</span>
+                        <span>Flask</span>
+                        <span>BiLSTM</span>
+                        <span>LSTM</span>
+                        <span>ConvLSTM</span>
+                        <span>MariaDB</span>
+                    </div>
+                    <a href="https://github.com/miftahfaridhh/pv-power-api" class="web-project-link" target="_blank" rel="noopener">
+                        View on GitHub
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25"/></svg>
+                    </a>
+                </div>
+                <div class="web-project-card reveal">
+                    <div class="web-project-type">Deep Learning · Energy Forecasting</div>
+                    <h3>Smart Home Energy Consumption Forecasting</h3>
+                    <p><strong>Purpose:</strong> Comparative study of classical time-series and deep learning models for forecasting household energy consumption using smart meter data with weather features.<br>
+                    <strong>Methodology:</strong> Compares ARIMA, SARIMA, SARIMAX vs LSTM, BiLSTM, Stacked BiLSTM, RNN, GRU on 503,910 smart meter records. Preprocessing: quadratic interpolation, MinMax normalization, correlation-based feature selection, sliding window transformation.<br>
+                    <strong>Findings:</strong> LSTM Multivariate significantly outperforms all classical methods with MSE=0.022, MAE=0.110. Extended to 17 South Korean regions where BiLSTM achieved R²=0.9549 on Busan data.<br>
+                    <strong>Evaluation:</strong> MSE, RMSE, MAE, MAPE, R² across all models. Deep learning with weather multivariate input provides substantially better accuracy.</p>
+                    <div class="web-project-tech">
+                        <span>TensorFlow</span>
+                        <span>BiLSTM</span>
+                        <span>GRU</span>
+                        <span>ARIMA</span>
+                        <span>scikit-learn</span>
+                        <span>Jupyter</span>
+                    </div>
+                    <a href="https://github.com/miftahfaridhh/smart-home-energy-consumption-forecast" class="web-project-link" target="_blank" rel="noopener">
+                        View on GitHub
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25"/></svg>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Edge AI -->
+            <h3 class="reveal" style="color: var(--accent); margin: 2.5rem 0 1.5rem; font-size: 1.2rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em;">Edge AI on NVIDIA Jetson</h3>
+            <div class="web-projects-grid">
+                <div class="web-project-card reveal">
+                    <div class="web-project-type">Edge AI · Computer Vision</div>
+                    <h3>Edge AI Object Detection</h3>
+                    <p><strong>Purpose:</strong> Real-time object detection optimized for NVIDIA Jetson edge devices.<br>
+                    <strong>Methodology:</strong> YOLOv8 models exported to TensorRT/ONNX for inference acceleration on Jetson Orin. Custom training on domain-specific datasets.<br>
+                    <strong>Findings:</strong> Achieves real-time inference (&gt;30 FPS) on Jetson with TensorRT INT8 quantization while maintaining detection accuracy.</p>
+                    <div class="web-project-tech">
+                        <span>YOLOv8</span>
+                        <span>TensorRT</span>
+                        <span>ONNX</span>
+                        <span>Jetson</span>
+                        <span>Docker</span>
+                    </div>
+                    <a href="https://github.com/miftahfaridhh/edge-ai-object-detection" class="web-project-link" target="_blank" rel="noopener">
+                        View on GitHub
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25"/></svg>
+                    </a>
+                </div>
+                <div class="web-project-card reveal">
+                    <div class="web-project-type">Edge AI · Biometrics</div>
+                    <h3>Edge AI Attendance System</h3>
+                    <p><strong>Purpose:</strong> Automated attendance tracking using face recognition on edge devices.<br>
+                    <strong>Methodology:</strong> InsightFace for face detection and recognition, deployed on NVIDIA Jetson with TensorRT acceleration. Supports real-time multi-face tracking.<br>
+                    <strong>Findings:</strong> Reliable face recognition at edge with low-latency processing for real-time attendance logging.</p>
+                    <div class="web-project-tech">
+                        <span>InsightFace</span>
+                        <span>TensorRT</span>
+                        <span>Jetson</span>
+                        <span>Python</span>
+                        <span>Docker</span>
+                    </div>
+                    <a href="https://github.com/miftahfaridhh/edge-ai-attendance" class="web-project-link" target="_blank" rel="noopener">
+                        View on GitHub
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25"/></svg>
+                    </a>
+                </div>
+                <div class="web-project-card reveal">
+                    <div class="web-project-type">Edge AI · Gesture Recognition</div>
+                    <h3>Edge AI Gesture Recognition</h3>
+                    <p><strong>Purpose:</strong> Real-time hand gesture recognition for human-robot interaction on edge devices.<br>
+                    <strong>Methodology:</strong> MediaPipe hand tracking with custom gesture classification models, optimized for NVIDIA Jetson deployment.<br>
+                    <strong>Findings:</strong> Low-latency gesture recognition enabling intuitive robot control interfaces.</p>
+                    <div class="web-project-tech">
+                        <span>MediaPipe</span>
+                        <span>TensorRT</span>
+                        <span>Jetson</span>
+                        <span>Python</span>
+                        <span>OpenCV</span>
+                    </div>
+                    <a href="https://github.com/miftahfaridhh/edge-ai-gesture" class="web-project-link" target="_blank" rel="noopener">
+                        View on GitHub
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25"/></svg>
+                    </a>
+                </div>
+                <div class="web-project-card reveal">
+                    <div class="web-project-type">Edge AI · OCR</div>
+                    <h3>Edge AI ALPR (License Plate Recognition)</h3>
+                    <p><strong>Purpose:</strong> Automatic license plate recognition system for edge deployment.<br>
+                    <strong>Methodology:</strong> YOLOv8 for plate detection + EasyOCR for character recognition, deployed on NVIDIA Jetson with TensorRT optimization.<br>
+                    <strong>Findings:</strong> Real-time plate detection and recognition suitable for parking and traffic monitoring applications.</p>
+                    <div class="web-project-tech">
+                        <span>YOLOv8</span>
+                        <span>EasyOCR</span>
+                        <span>TensorRT</span>
+                        <span>Jetson</span>
+                        <span>Docker</span>
+                    </div>
+                    <a href="https://github.com/miftahfaridhh/edge-ai-alpr" class="web-project-link" target="_blank" rel="noopener">
+                        View on GitHub
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25"/></svg>
+                    </a>
+                </div>
+                <div class="web-project-card reveal">
+                    <div class="web-project-type">Edge AI · Safety</div>
+                    <h3>Edge AI PPE Detection</h3>
+                    <p><strong>Purpose:</strong> Personal Protective Equipment compliance detection for workplace safety.<br>
+                    <strong>Methodology:</strong> YOLOv8 trained to detect helmets, vests, gloves, and other PPE items. Deployed on NVIDIA Jetson for on-site monitoring.<br>
+                    <strong>Findings:</strong> Real-time PPE compliance checking with alert systems for safety violations.</p>
+                    <div class="web-project-tech">
+                        <span>YOLOv8</span>
+                        <span>TensorRT</span>
+                        <span>Jetson</span>
+                        <span>Python</span>
+                        <span>Docker</span>
+                    </div>
+                    <a href="https://github.com/miftahfaridhh/edge-ai-ppe" class="web-project-link" target="_blank" rel="noopener">
+                        View on GitHub
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25"/></svg>
+                    </a>
+                </div>
+                <div class="web-project-card reveal">
+                    <div class="web-project-type">Edge AI · Fitness</div>
+                    <h3>Edge AI Fitness Tracker</h3>
+                    <p><strong>Purpose:</strong> Pose estimation for exercise form analysis and repetition counting on edge devices.<br>
+                    <strong>Methodology:</strong> MediaPipe Pose with custom exercise classification, deployed on NVIDIA Jetson for real-time workout tracking.<br>
+                    <strong>Findings:</strong> Accurate pose-based exercise counting and form correction feedback.</p>
+                    <div class="web-project-tech">
+                        <span>MediaPipe</span>
+                        <span>Jetson</span>
+                        <span>Python</span>
+                        <span>OpenCV</span>
+                    </div>
+                    <a href="https://github.com/miftahfaridhh/edge-ai-fitness" class="web-project-link" target="_blank" rel="noopener">
+                        View on GitHub
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25"/></svg>
+                    </a>
+                </div>
+            </div>
+
+            <!-- IoT & Security -->
+            <h3 class="reveal" style="color: var(--accent); margin: 2.5rem 0 1.5rem; font-size: 1.2rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em;">IoT &amp; Security Systems</h3>
+            <div class="web-projects-grid">
+                <div class="web-project-card reveal">
+                    <div class="web-project-type">IoT · Environmental Monitoring</div>
+                    <h3>Server Room Monitoring System</h3>
+                    <p><strong>Purpose:</strong> Real-time server room environmental monitoring to prevent equipment damage and downtime.<br>
+                    <strong>Methodology:</strong> Multiple Arduino sensor nodes (DHT22, dust PM2.5/PM10, vibration, sound) transmit data via LoRa wireless to a central receiver. Python backend logs to MariaDB and sends Telegram alerts.<br>
+                    <strong>Findings:</strong> Reliable multi-sensor IoT mesh providing continuous environmental monitoring with instant alerting on anomalies.</p>
+                    <div class="web-project-tech">
+                        <span>Arduino</span>
+                        <span>LoRa</span>
+                        <span>Python</span>
+                        <span>MariaDB</span>
+                        <span>Telegram</span>
+                    </div>
+                    <a href="https://github.com/miftahfaridhh/server-room-monitoring" class="web-project-link" target="_blank" rel="noopener">
+                        View on GitHub
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25"/></svg>
+                    </a>
+                </div>
+                <div class="web-project-card reveal">
+                    <div class="web-project-type">Computer Vision · Security</div>
+                    <h3>Intruder Detection System</h3>
+                    <p><strong>Purpose:</strong> Automated intrusion detection with real-time Telegram alerts.<br>
+                    <strong>Methodology:</strong> OpenCV DNN with pre-trained Caffe SSD face detection model. Processes webcam feed, detects faces above confidence threshold, captures snapshots and sends async Telegram notifications.<br>
+                    <strong>Findings:</strong> Real-time face detection with configurable sensitivity and non-blocking alert delivery.</p>
+                    <div class="web-project-tech">
+                        <span>OpenCV</span>
+                        <span>DNN</span>
+                        <span>Python</span>
+                        <span>Telegram Bot</span>
+                        <span>asyncio</span>
+                    </div>
+                    <a href="https://github.com/miftahfaridhh/intruder-detection" class="web-project-link" target="_blank" rel="noopener">
+                        View on GitHub
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25"/></svg>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Web Applications -->
+            <h3 class="reveal" style="color: var(--accent); margin: 2.5rem 0 1.5rem; font-size: 1.2rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em;">Web Applications</h3>
             <div class="web-projects-grid">
                 <div class="web-project-card reveal">
                     <div class="web-project-type">Web App · Speech &amp; AI</div>
                     <h3>VTT — Voice-to-Text Transcription</h3>
-                    <p>Web-based Indonesian speech-to-text application powered by Google Cloud Speech-to-Text API. Supports FLAC audio uploads with async long-running transcription, optimized for Bahasa Indonesia (id-ID).</p>
+                    <p><strong>Purpose:</strong> Indonesian speech-to-text web application for audio transcription.<br>
+                    <strong>Methodology:</strong> Google Cloud Speech-to-Text API with FLAC audio processing via FFmpeg. Supports async long-running recognition optimized for Bahasa Indonesia (id-ID).<br>
+                    <strong>Findings:</strong> Functional transcription platform for Indonesian language audio files.</p>
                     <div class="web-project-tech">
                         <span>Laravel 5.6</span>
                         <span>Google Cloud</span>
                         <span>Vue.js</span>
                         <span>FFmpeg</span>
-                        <span>GCS</span>
                     </div>
                     <a href="https://github.com/miftahfaridhh/vtt" class="web-project-link" target="_blank" rel="noopener">
                         View on GitHub
@@ -1242,14 +1444,30 @@
                     </a>
                 </div>
                 <div class="web-project-card reveal">
-                    <div class="web-project-type">Web App · IoT &amp; Management</div>
-                    <h3>VeTracker — Vehicle Management System</h3>
-                    <p>Vehicle tracking and inventory management platform with full CRUD operations, image upload, and multi-user team support. Secured with Laravel Jetstream including 2FA authentication.</p>
+                    <div class="web-project-type">Web App · NLP &amp; Social</div>
+                    <h3>TweetBullyingDetector</h3>
+                    <p><strong>Purpose:</strong> Cyberbullying detection and reporting platform for Twitter/X content.<br>
+                    <strong>Methodology:</strong> Keyword-based tweet search via Twitter API v1.1, community reporting system, and educational materials on cyberbullying awareness.<br>
+                    <strong>Findings:</strong> Platform for identifying and documenting cyberbullying incidents with user reporting workflow.</p>
+                    <div class="web-project-tech">
+                        <span>Laravel 7</span>
+                        <span>Twitter API</span>
+                        <span>PHP</span>
+                        <span>MySQL</span>
+                    </div>
+                    <a href="https://github.com/miftahfaridhh/tweetbullyingdetector" class="web-project-link" target="_blank" rel="noopener">
+                        View on GitHub
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25"/></svg>
+                    </a>
+                </div>
+                <div class="web-project-card reveal">
+                    <div class="web-project-type">Web App · Management</div>
+                    <h3>VeTracker — Vehicle Management</h3>
+                    <p>Vehicle tracking and inventory management platform with CRUD operations, image upload, and multi-user team support with 2FA authentication.</p>
                     <div class="web-project-tech">
                         <span>Laravel 8</span>
                         <span>Livewire</span>
                         <span>Tailwind CSS</span>
-                        <span>Jetstream</span>
                         <span>MySQL</span>
                     </div>
                     <a href="https://github.com/miftahfaridhh/vetracker" class="web-project-link" target="_blank" rel="noopener">
@@ -1258,14 +1476,13 @@
                     </a>
                 </div>
                 <div class="web-project-card reveal">
-                    <div class="web-project-type">Web App · Sports &amp; Events</div>
+                    <div class="web-project-type">Web App · Events</div>
                     <h3>Brocket — Tournament Bracket Manager</h3>
-                    <p>Tournament management platform that auto-generates randomized brackets, tracks medal standings, and provides public podium views. Supports team collaboration and email notifications.</p>
+                    <p>Tournament management platform with auto-generated randomized brackets, medal tracking, public podium views, and email notifications.</p>
                     <div class="web-project-tech">
                         <span>Laravel 8</span>
                         <span>Livewire</span>
                         <span>Tailwind CSS</span>
-                        <span>Alpine.js</span>
                         <span>MySQL</span>
                     </div>
                     <a href="https://github.com/miftahfaridhh/brocket" class="web-project-link" target="_blank" rel="noopener">
@@ -1274,25 +1491,9 @@
                     </a>
                 </div>
                 <div class="web-project-card reveal">
-                    <div class="web-project-type">Web App · NLP &amp; Social</div>
-                    <h3>TweetBullyingDetector — Cyberbullying Detection</h3>
-                    <p>Platform for detecting and reporting cyberbullying content on Twitter/X. Features keyword-based tweet search, community reporting system, and educational materials on cyberbullying awareness.</p>
-                    <div class="web-project-tech">
-                        <span>Laravel 7</span>
-                        <span>Twitter API</span>
-                        <span>PHP</span>
-                        <span>MySQL</span>
-                        <span>Sass</span>
-                    </div>
-                    <a href="https://github.com/miftahfaridhh/tweetbullyingdetector" class="web-project-link" target="_blank" rel="noopener">
-                        View on GitHub
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25"/></svg>
-                    </a>
-                </div>
-                <div class="web-project-card reveal">
                     <div class="web-project-type">AI · LLM &amp; Agents</div>
                     <h3>LangGraph Chatbot Playground</h3>
-                    <p>Experimental project for building and testing conversational AI applications with LangGraph. Explores stateful multi-turn dialogue, agent workflows, and LLM orchestration patterns.</p>
+                    <p>Experimental project for building conversational AI with LangGraph. Explores stateful multi-turn dialogue, agent workflows, and LLM orchestration patterns.</p>
                     <div class="web-project-tech">
                         <span>Python</span>
                         <span>LangGraph</span>
