@@ -7,7 +7,7 @@
     <meta name="description" content="Muhammad Miftah Faridh — Physical AI Engineer at orinu.ai. Specializing in LLM Fine-Tuning, Robotics (ROS 2), Deep Learning, IoT, and Edge AI. M.S. Electronics Engineering, Kookmin University.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=DM+Serif+Display&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=DM+Serif+Display&family=JetBrains+Mono:wght@400;500&family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -32,6 +32,7 @@
             --mono: 'JetBrains Mono', monospace;
             --sans: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
             --serif: 'DM Serif Display', Georgia, serif;
+            --sans-kr: 'Noto Sans KR', 'DM Sans', sans-serif;
             --max-w: 1200px;
             --radius: 16px;
         }
@@ -46,6 +47,9 @@
             overflow-x: hidden;
             -webkit-font-smoothing: antialiased;
         }
+
+        html[lang="ko"] body { font-family: var(--sans-kr); }
+        html[lang="id"] body { font-family: var(--sans); }
 
         a { color: inherit; text-decoration: none; }
         img { display: block; max-width: 100%; }
@@ -75,6 +79,7 @@
             color: var(--text); letter-spacing: -0.02em;
         }
         .nav-logo span { color: var(--accent); }
+        .nav-center { display: flex; align-items: center; gap: 0.25rem; }
         .nav-links { display: flex; gap: 0.25rem; list-style: none; }
         .nav-links a {
             color: var(--text-light); font-size: 0.8rem; font-weight: 500;
@@ -83,6 +88,28 @@
             transition: all 0.2s;
         }
         .nav-links a:hover { color: var(--text); background: var(--bg-alt); }
+        .nav-right { display: flex; align-items: center; gap: 0.75rem; }
+
+        /* Language Switcher */
+        .lang-switcher {
+            display: flex; align-items: center;
+            background: var(--bg-alt); border-radius: 99px;
+            padding: 3px; border: 1px solid var(--border);
+            gap: 2px;
+        }
+        .lang-btn {
+            font-family: var(--mono); font-size: 0.65rem; font-weight: 500;
+            padding: 0.35rem 0.6rem; border-radius: 99px;
+            border: none; background: transparent; cursor: pointer;
+            color: var(--text-muted); transition: all 0.2s;
+            letter-spacing: 0.03em; text-transform: uppercase;
+        }
+        .lang-btn:hover { color: var(--text); }
+        .lang-btn.active {
+            background: white; color: var(--text);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
         .nav-toggle {
             display: none; flex-direction: column; gap: 5px;
             background: none; border: none; cursor: pointer; padding: 4px;
@@ -117,6 +144,7 @@
             font-family: var(--serif); font-size: clamp(3rem, 6vw, 4.5rem);
             line-height: 1.05; letter-spacing: -0.03em; margin-bottom: 1.5rem;
         }
+        html[lang="ko"] .hero h1 { font-family: var(--sans-kr); font-weight: 700; }
         .hero h1 em {
             font-style: italic; color: var(--accent);
             background: linear-gradient(135deg, var(--accent), var(--accent-light));
@@ -155,14 +183,11 @@
         .btn-outline:hover {
             border-color: var(--text); background: var(--bg-alt);
         }
-        .hero-photo-wrap {
-            position: relative;
-        }
+        .hero-photo-wrap { position: relative; }
         .hero-photo-wrap img {
             width: 100%; aspect-ratio: 3/4; object-fit: cover;
             object-position: center top;
-            border-radius: var(--radius);
-            filter: grayscale(20%);
+            border-radius: var(--radius); filter: grayscale(20%);
         }
         .hero-photo-wrap::after {
             content: ''; position: absolute;
@@ -189,9 +214,7 @@
         .section-dark { background: var(--bg-dark); color: var(--text-on-dark); }
         .section-alt { background: var(--bg-alt); }
 
-        .section-header {
-            margin-bottom: 3.5rem;
-        }
+        .section-header { margin-bottom: 3.5rem; }
         .section-tag {
             font-family: var(--mono); font-size: 0.7rem; font-weight: 500;
             color: var(--accent); text-transform: uppercase;
@@ -206,9 +229,9 @@
 
         .section-title {
             font-family: var(--serif); font-size: clamp(2rem, 4vw, 3rem);
-            line-height: 1.15; letter-spacing: -0.02em;
-            margin-bottom: 1rem;
+            line-height: 1.15; letter-spacing: -0.02em; margin-bottom: 1rem;
         }
+        html[lang="ko"] .section-title { font-family: var(--sans-kr); font-weight: 700; }
         .section-desc {
             font-size: 1.05rem; color: var(--text-light);
             max-width: 580px; line-height: 1.7;
@@ -237,15 +260,9 @@
             box-shadow: 0 4px 20px rgba(0,0,0,0.06);
             transform: translateY(-2px);
         }
-        .about-card-icon {
-            font-size: 1.5rem; margin-bottom: 0.75rem;
-        }
-        .about-card h4 {
-            font-size: 0.85rem; font-weight: 600; margin-bottom: 0.25rem;
-        }
-        .about-card p {
-            font-size: 0.8rem; color: var(--text-muted); line-height: 1.5;
-        }
+        .about-card-icon { font-size: 1.5rem; margin-bottom: 0.75rem; }
+        .about-card h4 { font-size: 0.85rem; font-weight: 600; margin-bottom: 0.25rem; }
+        .about-card p { font-size: 0.8rem; color: var(--text-muted); line-height: 1.5; }
 
         /* ===== EXPERTISE ===== */
         .expertise-grid {
@@ -270,9 +287,9 @@
             font-family: var(--serif); font-size: 1.35rem;
             margin-bottom: 0.75rem; line-height: 1.3;
         }
+        html[lang="ko"] .exp-card h3 { font-family: var(--sans-kr); font-weight: 700; font-size: 1.2rem; }
         .exp-card p {
-            font-size: 0.9rem; color: var(--text-on-dark-muted);
-            line-height: 1.7;
+            font-size: 0.9rem; color: var(--text-on-dark-muted); line-height: 1.7;
         }
 
         /* ===== PUBLICATIONS ===== */
@@ -298,29 +315,22 @@
             font-size: 1.05rem; font-weight: 600; line-height: 1.5;
             margin-bottom: 0.3rem;
         }
-        .pub-authors {
-            font-size: 0.85rem; color: var(--text-muted);
-        }
+        .pub-authors { font-size: 0.85rem; color: var(--text-muted); }
         .pub-authors strong { color: var(--text); font-weight: 600; }
         .pub-arrow {
-            font-size: 1.25rem; color: var(--text-muted);
-            transition: all 0.2s;
+            font-size: 1.25rem; color: var(--text-muted); transition: all 0.2s;
         }
         .pub-item:hover .pub-arrow { color: var(--accent); transform: translateX(4px); }
 
         /* ===== PROJECTS BENTO ===== */
-        .projects-category {
-            margin-bottom: 4rem;
-        }
+        .projects-category { margin-bottom: 4rem; }
         .projects-category:last-child { margin-bottom: 0; }
         .category-header {
             display: flex; align-items: center; gap: 1rem;
             margin-bottom: 2rem; padding-bottom: 1rem;
             border-bottom: 1px solid var(--border-dark);
         }
-        .category-dot {
-            width: 8px; height: 8px; border-radius: 50%;
-        }
+        .category-dot { width: 8px; height: 8px; border-radius: 50%; }
         .category-dot.red { background: var(--accent); }
         .category-dot.green { background: var(--green); }
         .category-dot.blue { background: var(--blue); }
@@ -338,9 +348,7 @@
         }
 
         .bento-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1.25rem;
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem;
         }
         .bento-card {
             background: var(--bg-dark-alt); border-radius: var(--radius);
@@ -355,8 +363,7 @@
             box-shadow: 0 8px 32px rgba(0,0,0,0.3);
         }
         .bento-card.featured {
-            grid-column: span 2; grid-row: span 2;
-            padding: 2.5rem;
+            grid-column: span 2; grid-row: span 2; padding: 2.5rem;
         }
         .bento-card.wide { grid-column: span 2; }
         .bento-card-type {
@@ -369,9 +376,8 @@
             margin-bottom: 0.75rem; line-height: 1.4;
             color: var(--text-on-dark);
         }
-        .bento-card.featured h3 {
-            font-family: var(--serif); font-size: 1.5rem;
-        }
+        .bento-card.featured h3 { font-family: var(--serif); font-size: 1.5rem; }
+        html[lang="ko"] .bento-card.featured h3 { font-family: var(--sans-kr); font-weight: 700; }
         .bento-card p {
             font-size: 0.85rem; color: var(--text-on-dark-muted);
             line-height: 1.7; flex: 1;
@@ -381,12 +387,9 @@
             font-size: 0.8rem; color: var(--text-on-dark-muted);
             line-height: 1.7; margin-top: 0.5rem;
         }
-        .bento-card-detail strong {
-            color: var(--text-on-dark); font-weight: 500;
-        }
+        .bento-card-detail strong { color: var(--text-on-dark); font-weight: 500; }
         .bento-tags {
-            display: flex; flex-wrap: wrap; gap: 0.4rem;
-            margin-top: 1rem;
+            display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 1rem;
         }
         .bento-tag {
             font-family: var(--mono); font-size: 0.6rem;
@@ -435,8 +438,7 @@
         .award-badge {
             width: 48px; height: 48px; flex-shrink: 0;
             border-radius: 12px; display: flex;
-            align-items: center; justify-content: center;
-            font-size: 1.25rem;
+            align-items: center; justify-content: center; font-size: 1.25rem;
         }
         .award-badge.gold { background: #fef3c7; }
         .award-badge.bronze { background: #fed7aa; }
@@ -444,8 +446,7 @@
         .award-place {
             font-family: var(--mono); font-size: 0.65rem;
             text-transform: uppercase; letter-spacing: 0.08em;
-            color: var(--accent); font-weight: 600;
-            margin-bottom: 0.3rem;
+            color: var(--accent); font-weight: 600; margin-bottom: 0.3rem;
         }
         .award-card h3 { font-size: 0.95rem; font-weight: 600; line-height: 1.4; margin-bottom: 0.25rem; }
         .award-card .award-desc { font-size: 0.8rem; color: var(--text-muted); }
@@ -455,8 +456,7 @@
         .exp-item {
             display: grid; grid-template-columns: 200px 1fr;
             gap: 3rem; padding: 2.5rem 0;
-            border-bottom: 1px solid var(--border);
-            transition: all 0.2s;
+            border-bottom: 1px solid var(--border); transition: all 0.2s;
         }
         .exp-item:first-child { border-top: 1px solid var(--border); }
         .exp-item:hover { padding-left: 0.5rem; }
@@ -551,9 +551,7 @@
             font-size: 0.95rem; font-weight: 600; line-height: 1.45;
             margin-bottom: 0.5rem;
         }
-        .research-period {
-            font-size: 0.75rem; color: var(--text-muted);
-        }
+        .research-period { font-size: 0.75rem; color: var(--text-muted); }
 
         /* ===== CONTACT ===== */
         .contact-section { padding: 120px 0; }
@@ -565,6 +563,7 @@
             font-family: var(--serif); font-size: clamp(2.5rem, 5vw, 3.5rem);
             line-height: 1.1; margin-bottom: 1.5rem;
         }
+        html[lang="ko"] .contact-title { font-family: var(--sans-kr); font-weight: 700; }
         .contact-subtitle {
             font-size: 1.05rem; color: var(--text-light); line-height: 1.7;
             margin-bottom: 2rem;
@@ -608,7 +607,6 @@
         .reveal.visible { opacity: 1; transform: translateY(0); }
         .reveal-delay-1 { transition-delay: 0.1s; }
         .reveal-delay-2 { transition-delay: 0.2s; }
-        .reveal-delay-3 { transition-delay: 0.3s; }
 
         /* ===== MOBILE ===== */
         @media (max-width: 900px) {
@@ -646,6 +644,7 @@
             .hero-photo-wrap::after { display: none; }
             .about-cards { grid-template-columns: 1fr; }
             .hero-stats-strip { flex-wrap: wrap; gap: 1.5rem; }
+            .lang-switcher { order: -1; }
         }
     </style>
 </head>
@@ -655,16 +654,23 @@
         <div class="nav-inner">
             <a href="#" class="nav-logo"><span>mf</span>aridh</a>
             <ul class="nav-links" id="navLinks">
-                <li><a href="#about" onclick="closeNav()">About</a></li>
-                <li><a href="#expertise" onclick="closeNav()">Expertise</a></li>
-                <li><a href="#publications" onclick="closeNav()">Papers</a></li>
-                <li><a href="#projects" onclick="closeNav()">Projects</a></li>
-                <li><a href="#experience" onclick="closeNav()">Career</a></li>
-                <li><a href="#contact" onclick="closeNav()">Contact</a></li>
+                <li><a href="#about" onclick="closeNav()" data-i18n="nav.about">About</a></li>
+                <li><a href="#expertise" onclick="closeNav()" data-i18n="nav.expertise">Expertise</a></li>
+                <li><a href="#publications" onclick="closeNav()" data-i18n="nav.papers">Papers</a></li>
+                <li><a href="#projects" onclick="closeNav()" data-i18n="nav.projects">Projects</a></li>
+                <li><a href="#experience" onclick="closeNav()" data-i18n="nav.career">Career</a></li>
+                <li><a href="#contact" onclick="closeNav()" data-i18n="nav.contact">Contact</a></li>
             </ul>
-            <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
-                <span></span><span></span><span></span>
-            </button>
+            <div class="nav-right">
+                <div class="lang-switcher">
+                    <button class="lang-btn active" onclick="setLang('en')">EN</button>
+                    <button class="lang-btn" onclick="setLang('ko')">KO</button>
+                    <button class="lang-btn" onclick="setLang('id')">ID</button>
+                </div>
+                <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
         </div>
     </nav>
 
@@ -672,34 +678,30 @@
     <section class="hero">
         <div class="hero-grid">
             <div>
-                <div class="hero-tag">Physical AI Engineer</div>
-                <h1>Muhammad Miftah <em>Faridh</em></h1>
-                <p class="hero-subtitle">
-                    Building intelligent systems at the intersection of AI, robotics, and edge computing. From LLM fine-tuning and smart braille printers to autonomous marine vehicles.
-                </p>
-                <p class="hero-affiliation">
-                    M.S. Electronics Engineering, Kookmin University &mdash; Currently at <a href="https://orinu.ai/" target="_blank" rel="noopener">orinu.ai</a>, Seoul
-                </p>
+                <div class="hero-tag" data-i18n="hero.tag">Physical AI Engineer</div>
+                <h1 data-i18n-html="hero.name">Muhammad Miftah <em>Faridh</em></h1>
+                <p class="hero-subtitle" data-i18n="hero.subtitle">Building intelligent systems at the intersection of AI, robotics, and edge computing. From LLM fine-tuning and smart braille printers to autonomous marine vehicles.</p>
+                <p class="hero-affiliation" data-i18n-html="hero.affiliation">M.S. Electronics Engineering, Kookmin University &mdash; Currently at <a href="https://orinu.ai/" target="_blank" rel="noopener">orinu.ai</a>, Seoul</p>
                 <div class="hero-actions">
-                    <a href="#contact" class="btn btn-primary">Get in Touch</a>
+                    <a href="#contact" class="btn btn-primary" data-i18n="hero.cta">Get in Touch</a>
                     <a href="https://scholar.google.com/citations?user=okg9J80AAAAJ" class="btn btn-outline" target="_blank" rel="noopener">Google Scholar</a>
                 </div>
                 <div class="hero-stats-strip">
                     <div>
                         <div class="hero-stat-num">7+</div>
-                        <div class="hero-stat-label">Publications</div>
+                        <div class="hero-stat-label" data-i18n="hero.stat1">Publications</div>
                     </div>
                     <div>
                         <div class="hero-stat-num">5</div>
-                        <div class="hero-stat-label">Int'l Awards</div>
+                        <div class="hero-stat-label" data-i18n="hero.stat2">Int'l Awards</div>
                     </div>
                     <div>
                         <div class="hero-stat-num">8</div>
-                        <div class="hero-stat-label">Gov. Projects</div>
+                        <div class="hero-stat-label" data-i18n="hero.stat3">Gov. Projects</div>
                     </div>
                     <div>
                         <div class="hero-stat-num">20+</div>
-                        <div class="hero-stat-label">Open Source</div>
+                        <div class="hero-stat-label" data-i18n="hero.stat4">Open Source</div>
                     </div>
                 </div>
             </div>
@@ -715,36 +717,32 @@
             <div class="about-grid">
                 <div class="about-text reveal">
                     <div class="section-header">
-                        <div class="section-tag">About</div>
-                        <h2 class="section-title">Engineer, Researcher<br>& Problem Solver</h2>
+                        <div class="section-tag" data-i18n="about.tag">About</div>
+                        <h2 class="section-title" data-i18n-html="about.title">Engineer, Researcher<br>& Problem Solver</h2>
                     </div>
-                    <p>
-                        AI Developer and Robotics Engineer with hands-on experience in LLM fine-tuning (T5, Gemma, LLaMA with LoRA, QLoRA, and RAG) and real-time robotic systems using ROS 2 and NVIDIA Jetson platforms. Proven track record in applied research, publishing papers in IEEE Access and MDPI Sensors, and building intelligent systems across industries.
-                    </p>
-                    <p>
-                        From autonomous marine vehicles at University of Indonesia's Robotics Team to 5G-connected drones at XL Axiata, from Optical Camera Communication research at Kookmin University to Smart Braille Printers at orinu.ai &mdash; I bridge AI and robotics to solve real-world problems.
-                    </p>
+                    <p data-i18n="about.p1">AI Developer and Robotics Engineer with hands-on experience in LLM fine-tuning (T5, Gemma, LLaMA with LoRA, QLoRA, and RAG) and real-time robotic systems using ROS 2 and NVIDIA Jetson platforms. Proven track record in applied research, publishing papers in IEEE Access and MDPI Sensors, and building intelligent systems across industries.</p>
+                    <p data-i18n="about.p2">From autonomous marine vehicles at University of Indonesia's Robotics Team to 5G-connected drones at XL Axiata, from Optical Camera Communication research at Kookmin University to Smart Braille Printers at orinu.ai &mdash; I bridge AI and robotics to solve real-world problems.</p>
                 </div>
                 <div class="about-cards reveal reveal-delay-1">
                     <div class="about-card">
                         <div class="about-card-icon">&#127891;</div>
-                        <h4>M.S. EE, Kookmin University</h4>
-                        <p>Seoul, South Korea (2022 &ndash; 2024)</p>
+                        <h4 data-i18n="about.card1.title">M.S. EE, Kookmin University</h4>
+                        <p data-i18n="about.card1.desc">Seoul, South Korea (2022 &ndash; 2024)</p>
                     </div>
                     <div class="about-card">
                         <div class="about-card-icon">&#127891;</div>
-                        <h4>B.S. Computer Engineering</h4>
-                        <p>University of Indonesia (2018 &ndash; 2022)</p>
+                        <h4 data-i18n="about.card2.title">B.S. Computer Engineering</h4>
+                        <p data-i18n="about.card2.desc">University of Indonesia (2018 &ndash; 2022)</p>
                     </div>
                     <div class="about-card">
                         <div class="about-card-icon">&#9881;&#65039;</div>
-                        <h4>Physical AI Engineer</h4>
-                        <p><a href="https://orinu.ai/" target="_blank" rel="noopener" style="color: var(--accent);">orinu.ai</a> &mdash; Hwaseong, KR</p>
+                        <h4 data-i18n="about.card3.title">Physical AI Engineer</h4>
+                        <p data-i18n-html="about.card3.desc"><a href="https://orinu.ai/" target="_blank" rel="noopener" style="color: var(--accent);">orinu.ai</a> &mdash; Hwaseong, KR</p>
                     </div>
                     <div class="about-card">
                         <div class="about-card-icon">&#128205;</div>
-                        <h4>Based in Seoul</h4>
-                        <p>Open to global opportunities</p>
+                        <h4 data-i18n="about.card4.title">Based in Seoul</h4>
+                        <p data-i18n="about.card4.desc">Open to global opportunities</p>
                     </div>
                 </div>
             </div>
@@ -755,40 +753,40 @@
     <section id="expertise" class="section-dark">
         <div class="container">
             <div class="section-header reveal">
-                <div class="section-tag">Expertise</div>
-                <h2 class="section-title">Core Competencies</h2>
-                <p class="section-desc">Bridging AI research and engineering across robotics, edge computing, communications, and intelligent systems.</p>
+                <div class="section-tag" data-i18n="expertise.tag">Expertise</div>
+                <h2 class="section-title" data-i18n="expertise.title">Core Competencies</h2>
+                <p class="section-desc" data-i18n="expertise.desc">Bridging AI research and engineering across robotics, edge computing, communications, and intelligent systems.</p>
             </div>
             <div class="expertise-grid">
                 <div class="exp-card reveal">
                     <div class="exp-card-num">01</div>
-                    <h3>LLM & Generative AI</h3>
-                    <p>Fine-tuning large language models (T5, Gemma, LLaMA) with LoRA, QLoRA, and RAG pipelines. Building translation engines and conversational AI for production deployment.</p>
+                    <h3 data-i18n="expertise.c1.title">LLM & Generative AI</h3>
+                    <p data-i18n="expertise.c1.desc">Fine-tuning large language models (T5, Gemma, LLaMA) with LoRA, QLoRA, and RAG pipelines. Building translation engines and conversational AI for production deployment.</p>
                 </div>
                 <div class="exp-card reveal reveal-delay-1">
                     <div class="exp-card-num">02</div>
-                    <h3>Robotics & ROS 2</h3>
-                    <p>Real-time robotic systems on Jetson platforms. Robotic arms, autonomous marine vehicles (USV/AUV), and drone systems with integrated computer vision pipelines.</p>
+                    <h3 data-i18n="expertise.c2.title">Robotics & ROS 2</h3>
+                    <p data-i18n="expertise.c2.desc">Real-time robotic systems on Jetson platforms. Robotic arms, autonomous marine vehicles (USV/AUV), and drone systems with integrated computer vision pipelines.</p>
                 </div>
                 <div class="exp-card reveal reveal-delay-2">
                     <div class="exp-card-num">03</div>
-                    <h3>Edge AI & Deployment</h3>
-                    <p>8+ production Edge AI systems on NVIDIA Jetson. TensorRT INT8/FP16 optimization achieving 67% model compression. Full-stack: FastAPI + React + WebSocket streaming.</p>
+                    <h3 data-i18n="expertise.c3.title">Edge AI & Deployment</h3>
+                    <p data-i18n="expertise.c3.desc">8+ production Edge AI systems on NVIDIA Jetson. TensorRT INT8/FP16 optimization achieving 67% model compression. Full-stack: FastAPI + React + WebSocket streaming.</p>
                 </div>
                 <div class="exp-card reveal">
                     <div class="exp-card-num">04</div>
-                    <h3>Deep Learning</h3>
-                    <p>CNN, LSTM, GCN, and hybrid architectures for signal processing, image recognition, and time-series forecasting. Published research on solar energy prediction and OCC systems.</p>
+                    <h3 data-i18n="expertise.c4.title">Deep Learning</h3>
+                    <p data-i18n="expertise.c4.desc">CNN, LSTM, GCN, and hybrid architectures for signal processing, image recognition, and time-series forecasting. Published research on solar energy prediction and OCC systems.</p>
                 </div>
                 <div class="exp-card reveal reveal-delay-1">
                     <div class="exp-card-num">05</div>
-                    <h3>Optical Camera Comm.</h3>
-                    <p>2D MIMO OCC systems, CSMA/CA MAC protocol design for optical communication, and ultra-high-rate OCC with precision localization. Published in IEEE Access.</p>
+                    <h3 data-i18n="expertise.c5.title">Optical Camera Comm.</h3>
+                    <p data-i18n="expertise.c5.desc">2D MIMO OCC systems, CSMA/CA MAC protocol design for optical communication, and ultra-high-rate OCC with precision localization. Published in IEEE Access.</p>
                 </div>
                 <div class="exp-card reveal reveal-delay-2">
                     <div class="exp-card-num">06</div>
-                    <h3>IoT & Energy Systems</h3>
-                    <p>Intelligent IoE platforms, sensor integration with LoRa mesh networks, solar energy forecasting with GCN-BiLSTM models, VPP ESS platforms, and V2X communication.</p>
+                    <h3 data-i18n="expertise.c6.title">IoT & Energy Systems</h3>
+                    <p data-i18n="expertise.c6.desc">Intelligent IoE platforms, sensor integration with LoRa mesh networks, solar energy forecasting with GCN-BiLSTM models, VPP ESS platforms, and V2X communication.</p>
                 </div>
             </div>
         </div>
@@ -798,9 +796,9 @@
     <section id="publications">
         <div class="container">
             <div class="section-header reveal">
-                <div class="section-tag">Publications</div>
-                <h2 class="section-title">Research Papers</h2>
-                <p class="section-desc">Peer-reviewed publications in international journals, conferences, and technical competitions.</p>
+                <div class="section-tag" data-i18n="pub.tag">Publications</div>
+                <h2 class="section-title" data-i18n="pub.title">Research Papers</h2>
+                <p class="section-desc" data-i18n="pub.desc">Peer-reviewed publications in international journals, conferences, and technical competitions.</p>
             </div>
             <div class="pub-list">
                 <a href="https://scholar.google.com/citations?user=okg9J80AAAAJ" class="pub-item reveal" target="_blank" rel="noopener">
@@ -874,27 +872,24 @@
     <section id="projects" class="section-dark">
         <div class="container">
             <div class="section-header reveal">
-                <div class="section-tag">Portfolio</div>
-                <h2 class="section-title">Projects & Open Source</h2>
-                <p class="section-desc">AI/ML research, Edge AI deployments on Jetson, IoT systems, and full-stack applications.</p>
+                <div class="section-tag" data-i18n="proj.tag">Portfolio</div>
+                <h2 class="section-title" data-i18n="proj.title">Projects & Open Source</h2>
+                <p class="section-desc" data-i18n="proj.desc">AI/ML research, Edge AI deployments on Jetson, IoT systems, and full-stack applications.</p>
             </div>
 
             <!-- AI & Deep Learning -->
             <div class="projects-category">
                 <div class="category-header reveal">
                     <span class="category-dot red"></span>
-                    <span class="category-title">AI & Deep Learning Research</span>
-                    <span class="category-count">2 projects</span>
+                    <span class="category-title" data-i18n="proj.cat1">AI & Deep Learning Research</span>
+                    <span class="category-count" data-i18n="proj.cat1_count">2 projects</span>
                 </div>
                 <div class="bento-grid">
                     <div class="bento-card featured reveal">
                         <div class="bento-card-type">Deep Learning / Energy Forecasting / Published</div>
-                        <h3>PV Solar Power Forecasting API</h3>
-                        <p>Next-day photovoltaic solar power prediction across 10 South Korean sites. Flask REST API with 6 deep learning architectures trained on Korea Meteorological Administration weather data.</p>
-                        <div class="bento-card-detail">
-                            <strong>Models:</strong> BiLSTM, Stacked BiLSTM, LSTM, ConvLSTM, RNN &mdash; trained on 12 weather features (soil temp, solar radiation, cloud cover, etc.) with 24-hour sliding window producing 24-hour forecasts. MinMax normalization with tanh activation.<br><br>
-                            <strong>Result:</strong> BiLSTM variants achieved lowest prediction error. Automated daily predictions at 10:00 and 16:00 KST. Published in Sensors 2023 (MDPI) and ICUFN 2023.
-                        </div>
+                        <h3 data-i18n="proj.pv.title">PV Solar Power Forecasting API</h3>
+                        <p data-i18n="proj.pv.desc">Next-day photovoltaic solar power prediction across 10 South Korean sites. Flask REST API with 6 deep learning architectures trained on Korea Meteorological Administration weather data.</p>
+                        <div class="bento-card-detail" data-i18n-html="proj.pv.detail"><strong>Models:</strong> BiLSTM, Stacked BiLSTM, LSTM, ConvLSTM, RNN &mdash; trained on 12 weather features (soil temp, solar radiation, cloud cover, etc.) with 24-hour sliding window producing 24-hour forecasts. MinMax normalization with tanh activation.<br><br><strong>Result:</strong> BiLSTM variants achieved lowest prediction error. Automated daily predictions at 10:00 and 16:00 KST. Published in Sensors 2023 (MDPI) and ICUFN 2023.</div>
                         <div class="bento-tags">
                             <span class="bento-tag">TensorFlow</span>
                             <span class="bento-tag">Flask</span>
@@ -903,21 +898,19 @@
                             <span class="bento-tag">MariaDB</span>
                         </div>
                         <div class="bento-metrics">
-                            <div class="bento-metric"><strong>10</strong>Solar sites</div>
-                            <div class="bento-metric"><strong>6</strong>DL models</div>
-                            <div class="bento-metric"><strong>12</strong>Features</div>
+                            <div class="bento-metric"><strong>10</strong><span data-i18n="proj.pv.m1">Solar sites</span></div>
+                            <div class="bento-metric"><strong>6</strong><span data-i18n="proj.pv.m2">DL models</span></div>
+                            <div class="bento-metric"><strong>12</strong><span data-i18n="proj.pv.m3">Features</span></div>
                         </div>
                         <a href="https://github.com/miftahfaridhh/pv-power-api" class="bento-link" target="_blank" rel="noopener">
-                            View on GitHub <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25"/></svg>
+                            <span data-i18n="proj.github">View on GitHub</span> <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25"/></svg>
                         </a>
                     </div>
                     <div class="bento-card reveal">
                         <div class="bento-card-type">Deep Learning / Time-Series</div>
-                        <h3>Smart Home Energy Forecasting</h3>
-                        <p>Comparative study: ARIMA/SARIMA/SARIMAX vs LSTM/BiLSTM/GRU/RNN on 503,910 smart meter records with weather features.</p>
-                        <div class="bento-card-detail">
-                            <strong>Key finding:</strong> LSTM Multivariate achieves MSE=0.022, MAE=0.110 &mdash; significantly outperforming classical methods. Extended to 17 South Korean regions with BiLSTM achieving R&sup2;=0.9549 on Busan data.
-                        </div>
+                        <h3 data-i18n="proj.energy.title">Smart Home Energy Forecasting</h3>
+                        <p data-i18n="proj.energy.desc">Comparative study: ARIMA/SARIMA/SARIMAX vs LSTM/BiLSTM/GRU/RNN on 503,910 smart meter records with weather features.</p>
+                        <div class="bento-card-detail" data-i18n-html="proj.energy.detail"><strong>Key finding:</strong> LSTM Multivariate achieves MSE=0.022, MAE=0.110 &mdash; significantly outperforming classical methods. Extended to 17 South Korean regions with BiLSTM achieving R&sup2;=0.9549 on Busan data.</div>
                         <div class="bento-tags">
                             <span class="bento-tag">TensorFlow</span>
                             <span class="bento-tag">BiLSTM</span>
@@ -926,13 +919,13 @@
                             <span class="bento-tag">Jupyter</span>
                         </div>
                         <a href="https://github.com/miftahfaridhh/smart-home-energy-consumption-forecast" class="bento-link" target="_blank" rel="noopener">
-                            View on GitHub <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25"/></svg>
+                            <span data-i18n="proj.github">View on GitHub</span> <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25"/></svg>
                         </a>
                     </div>
                     <div class="bento-card reveal">
                         <div class="bento-card-type">LLM / Agents</div>
-                        <h3>LangGraph Chatbot Playground</h3>
-                        <p>Experimental conversational AI with LangGraph &mdash; stateful multi-turn dialogue, agent workflows, and LLM orchestration using OpenAI/Anthropic/OpenRouter APIs.</p>
+                        <h3 data-i18n="proj.langgraph.title">LangGraph Chatbot Playground</h3>
+                        <p data-i18n="proj.langgraph.desc">Experimental conversational AI with LangGraph &mdash; stateful multi-turn dialogue, agent workflows, and LLM orchestration using OpenAI/Anthropic/OpenRouter APIs.</p>
                         <div class="bento-tags">
                             <span class="bento-tag">Python</span>
                             <span class="bento-tag">LangGraph</span>
@@ -940,7 +933,7 @@
                             <span class="bento-tag">LLM</span>
                         </div>
                         <a href="https://github.com/miftahfaridhh/langgraph-chatbot-playground" class="bento-link" target="_blank" rel="noopener">
-                            View on GitHub <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25"/></svg>
+                            <span data-i18n="proj.github">View on GitHub</span> <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25"/></svg>
                         </a>
                     </div>
                 </div>
@@ -950,14 +943,14 @@
             <div class="projects-category">
                 <div class="category-header reveal">
                     <span class="category-dot green"></span>
-                    <span class="category-title">Edge AI on NVIDIA Jetson</span>
-                    <span class="category-count">8 projects</span>
+                    <span class="category-title" data-i18n="proj.cat2">Edge AI on NVIDIA Jetson</span>
+                    <span class="category-count" data-i18n="proj.cat2_count">8 projects</span>
                 </div>
                 <div class="bento-grid">
                     <div class="bento-card wide reveal">
                         <div class="bento-card-type">Edge AI / Deployment Hub</div>
-                        <h3>Edge AI Deployment Platform</h3>
-                        <p>Central deployment hub for all 8 edge AI projects. TensorRT INT8/FP16 model compression achieving 67% total size reduction (482 MB to 152 MB). Includes all compressed models, inference scripts, SCP/USB transfer utilities, and shared Python library with TensorRT inference engine, async video capture, WebSocket streaming, and Docker base images.</p>
+                        <h3 data-i18n="proj.deploy.title">Edge AI Deployment Platform</h3>
+                        <p data-i18n="proj.deploy.desc">Central deployment hub for all 8 edge AI projects. TensorRT INT8/FP16 model compression achieving 67% total size reduction (482 MB to 152 MB). Includes all compressed models, inference scripts, SCP/USB transfer utilities, and shared Python library with TensorRT inference engine, async video capture, WebSocket streaming, and Docker base images.</p>
                         <div class="bento-tags">
                             <span class="bento-tag">TensorRT</span>
                             <span class="bento-tag">Docker</span>
@@ -968,120 +961,69 @@
                             <span class="bento-tag">CUDA</span>
                         </div>
                         <div class="bento-metrics">
-                            <div class="bento-metric"><strong>67%</strong>Compression</div>
-                            <div class="bento-metric"><strong>152MB</strong>Total size</div>
-                            <div class="bento-metric"><strong>8</strong>AI projects</div>
+                            <div class="bento-metric"><strong>67%</strong><span data-i18n="proj.deploy.m1">Compression</span></div>
+                            <div class="bento-metric"><strong>152MB</strong><span data-i18n="proj.deploy.m2">Total size</span></div>
+                            <div class="bento-metric"><strong>8</strong><span data-i18n="proj.deploy.m3">AI projects</span></div>
                         </div>
                         <a href="https://github.com/miftahfaridhh/edge-ai-deployment" class="bento-link" target="_blank" rel="noopener">
-                            View on GitHub <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25"/></svg>
+                            <span data-i18n="proj.github">View on GitHub</span> <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25"/></svg>
                         </a>
                     </div>
                     <div class="bento-card reveal">
                         <div class="bento-card-type">Computer Vision / 80 Classes</div>
-                        <h3>Object Detection</h3>
-                        <p>Real-time 80-class COCO detection. Full stack: FastAPI backend, React/TypeScript frontend, WebSocket streaming. TensorRT FP16 targeting 20-25 FPS at 416x416 on Jetson Nano.</p>
-                        <div class="bento-tags">
-                            <span class="bento-tag">YOLOv8</span>
-                            <span class="bento-tag">TensorRT</span>
-                            <span class="bento-tag">FastAPI</span>
-                            <span class="bento-tag">React</span>
-                        </div>
-                        <a href="https://github.com/miftahfaridhh/edge-ai-object-detection" class="bento-link" target="_blank" rel="noopener">
-                            View on GitHub <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25"/></svg>
-                        </a>
+                        <h3 data-i18n="proj.objdet.title">Object Detection</h3>
+                        <p data-i18n="proj.objdet.desc">Real-time 80-class COCO detection. Full stack: FastAPI backend, React/TypeScript frontend, WebSocket streaming. TensorRT FP16 targeting 20-25 FPS at 416x416 on Jetson Nano.</p>
+                        <div class="bento-tags"><span class="bento-tag">YOLOv8</span><span class="bento-tag">TensorRT</span><span class="bento-tag">FastAPI</span><span class="bento-tag">React</span></div>
+                        <a href="https://github.com/miftahfaridhh/edge-ai-object-detection" class="bento-link" target="_blank" rel="noopener"><span data-i18n="proj.github">View on GitHub</span> <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25"/></svg></a>
                     </div>
                     <div class="bento-card reveal">
                         <div class="bento-card-type">Biometrics / Anti-Spoofing</div>
-                        <h3>Face Recognition Attendance</h3>
-                        <p>InsightFace buffalo_s with RetinaFace + ArcFace recognition + MiniFASNet anti-spoofing. Multi-angle enrollment (5 angles). Full stack with PostgreSQL. INT8 compressed: 158 MB to 40 MB. 15-20 FPS.</p>
-                        <div class="bento-tags">
-                            <span class="bento-tag">InsightFace</span>
-                            <span class="bento-tag">ArcFace</span>
-                            <span class="bento-tag">PostgreSQL</span>
-                            <span class="bento-tag">FastAPI</span>
-                        </div>
-                        <a href="https://github.com/miftahfaridhh/edge-ai-attendance" class="bento-link" target="_blank" rel="noopener">
-                            View on GitHub <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25"/></svg>
-                        </a>
+                        <h3 data-i18n="proj.attend.title">Face Recognition Attendance</h3>
+                        <p data-i18n="proj.attend.desc">InsightFace buffalo_s with RetinaFace + ArcFace recognition + MiniFASNet anti-spoofing. Multi-angle enrollment (5 angles). Full stack with PostgreSQL. INT8 compressed: 158 MB to 40 MB. 15-20 FPS.</p>
+                        <div class="bento-tags"><span class="bento-tag">InsightFace</span><span class="bento-tag">ArcFace</span><span class="bento-tag">PostgreSQL</span><span class="bento-tag">FastAPI</span></div>
+                        <a href="https://github.com/miftahfaridhh/edge-ai-attendance" class="bento-link" target="_blank" rel="noopener"><span data-i18n="proj.github">View on GitHub</span> <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25"/></svg></a>
                     </div>
                     <div class="bento-card reveal">
                         <div class="bento-card-type">Safety / Zone Compliance</div>
-                        <h3>PPE Detection</h3>
-                        <p>Multi-PPE detection (Hardhat, Vest, Glasses, Gloves, Mask) with zone-based compliance for Construction/Manufacturing/Chemical zones. YOLOv8n with TensorRT INT8 (3.4 MB model).</p>
-                        <div class="bento-tags">
-                            <span class="bento-tag">YOLOv8</span>
-                            <span class="bento-tag">TensorRT INT8</span>
-                            <span class="bento-tag">Zone Detection</span>
-                        </div>
-                        <a href="https://github.com/miftahfaridhh/edge-ai-ppe" class="bento-link" target="_blank" rel="noopener">
-                            View on GitHub <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25"/></svg>
-                        </a>
+                        <h3 data-i18n="proj.ppe.title">PPE Detection</h3>
+                        <p data-i18n="proj.ppe.desc">Multi-PPE detection (Hardhat, Vest, Glasses, Gloves, Mask) with zone-based compliance for Construction/Manufacturing/Chemical zones. YOLOv8n with TensorRT INT8 (3.4 MB model).</p>
+                        <div class="bento-tags"><span class="bento-tag">YOLOv8</span><span class="bento-tag">TensorRT INT8</span><span class="bento-tag">Zone Detection</span></div>
+                        <a href="https://github.com/miftahfaridhh/edge-ai-ppe" class="bento-link" target="_blank" rel="noopener"><span data-i18n="proj.github">View on GitHub</span> <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25"/></svg></a>
                     </div>
                     <div class="bento-card reveal">
                         <div class="bento-card-type">OCR / Vehicle Tracking</div>
-                        <h3>License Plate Recognition</h3>
-                        <p>YOLOv8 plate detection + EasyOCR/PaddleOCR. SORT vehicle tracking. Indonesian plate format validation. Watchlist monitoring with alerts. Full stack with PostgreSQL + React.</p>
-                        <div class="bento-tags">
-                            <span class="bento-tag">YOLOv8</span>
-                            <span class="bento-tag">EasyOCR</span>
-                            <span class="bento-tag">SORT</span>
-                            <span class="bento-tag">React</span>
-                        </div>
-                        <a href="https://github.com/miftahfaridhh/edge-ai-alpr" class="bento-link" target="_blank" rel="noopener">
-                            View on GitHub <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25"/></svg>
-                        </a>
+                        <h3 data-i18n="proj.alpr.title">License Plate Recognition</h3>
+                        <p data-i18n="proj.alpr.desc">YOLOv8 plate detection + EasyOCR/PaddleOCR. SORT vehicle tracking. Indonesian plate format validation. Watchlist monitoring with alerts. Full stack with PostgreSQL + React.</p>
+                        <div class="bento-tags"><span class="bento-tag">YOLOv8</span><span class="bento-tag">EasyOCR</span><span class="bento-tag">SORT</span><span class="bento-tag">React</span></div>
+                        <a href="https://github.com/miftahfaridhh/edge-ai-alpr" class="bento-link" target="_blank" rel="noopener"><span data-i18n="proj.github">View on GitHub</span> <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25"/></svg></a>
                     </div>
                     <div class="bento-card reveal">
                         <div class="bento-card-type">Surveillance / Anomaly</div>
-                        <h3>Security Analytics</h3>
-                        <p>Motion detection (MOG2/KNN), polygon zone-based intrusion detection, and loitering detection with time tracking. YOLOv8n person detection + DeepSort tracking. INT8/FP16 compressed.</p>
-                        <div class="bento-tags">
-                            <span class="bento-tag">YOLOv8</span>
-                            <span class="bento-tag">DeepSort</span>
-                            <span class="bento-tag">MOG2/KNN</span>
-                        </div>
-                        <a href="https://github.com/miftahfaridhh/edge-ai-security" class="bento-link" target="_blank" rel="noopener">
-                            View on GitHub <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25"/></svg>
-                        </a>
+                        <h3 data-i18n="proj.security.title">Security Analytics</h3>
+                        <p data-i18n="proj.security.desc">Motion detection (MOG2/KNN), polygon zone-based intrusion detection, and loitering detection with time tracking. YOLOv8n person detection + DeepSort tracking. INT8/FP16 compressed.</p>
+                        <div class="bento-tags"><span class="bento-tag">YOLOv8</span><span class="bento-tag">DeepSort</span><span class="bento-tag">MOG2/KNN</span></div>
+                        <a href="https://github.com/miftahfaridhh/edge-ai-security" class="bento-link" target="_blank" rel="noopener"><span data-i18n="proj.github">View on GitHub</span> <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25"/></svg></a>
                     </div>
                     <div class="bento-card reveal">
                         <div class="bento-card-type">People Counting / Traffic</div>
-                        <h3>People Analytics</h3>
-                        <p>Line crossing counter, zone occupancy monitoring, traffic flow analysis. HOG fallback when no ML model available. JSON statistics output. 25-30 FPS with TensorRT on Jetson.</p>
-                        <div class="bento-tags">
-                            <span class="bento-tag">YOLOv8</span>
-                            <span class="bento-tag">HOG</span>
-                            <span class="bento-tag">Line Crossing</span>
-                        </div>
-                        <a href="https://github.com/miftahfaridhh/edge-ai-analytics" class="bento-link" target="_blank" rel="noopener">
-                            View on GitHub <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25"/></svg>
-                        </a>
+                        <h3 data-i18n="proj.analytics.title">People Analytics</h3>
+                        <p data-i18n="proj.analytics.desc">Line crossing counter, zone occupancy monitoring, traffic flow analysis. HOG fallback when no ML model available. JSON statistics output. 25-30 FPS with TensorRT on Jetson.</p>
+                        <div class="bento-tags"><span class="bento-tag">YOLOv8</span><span class="bento-tag">HOG</span><span class="bento-tag">Line Crossing</span></div>
+                        <a href="https://github.com/miftahfaridhh/edge-ai-analytics" class="bento-link" target="_blank" rel="noopener"><span data-i18n="proj.github">View on GitHub</span> <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25"/></svg></a>
                     </div>
                     <div class="bento-card reveal">
                         <div class="bento-card-type">Gesture / HRI</div>
-                        <h3>Hand Gesture Recognition</h3>
-                        <p>MediaPipe 21-landmark hand tracking with 9 gesture classes (FIST, OPEN_PALM, THUMBS_UP, etc.). Custom ML classifier training pipeline. Action mapping with cooldown. 15-20 FPS on Jetson.</p>
-                        <div class="bento-tags">
-                            <span class="bento-tag">MediaPipe</span>
-                            <span class="bento-tag">Custom ML</span>
-                            <span class="bento-tag">OpenCV</span>
-                        </div>
-                        <a href="https://github.com/miftahfaridhh/edge-ai-gesture" class="bento-link" target="_blank" rel="noopener">
-                            View on GitHub <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25"/></svg>
-                        </a>
+                        <h3 data-i18n="proj.gesture.title">Hand Gesture Recognition</h3>
+                        <p data-i18n="proj.gesture.desc">MediaPipe 21-landmark hand tracking with 9 gesture classes (FIST, OPEN_PALM, THUMBS_UP, etc.). Custom ML classifier training pipeline. Action mapping with cooldown. 15-20 FPS on Jetson.</p>
+                        <div class="bento-tags"><span class="bento-tag">MediaPipe</span><span class="bento-tag">Custom ML</span><span class="bento-tag">OpenCV</span></div>
+                        <a href="https://github.com/miftahfaridhh/edge-ai-gesture" class="bento-link" target="_blank" rel="noopener"><span data-i18n="proj.github">View on GitHub</span> <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25"/></svg></a>
                     </div>
                     <div class="bento-card reveal">
                         <div class="bento-card-type">Pose Estimation / Fitness</div>
-                        <h3>Exercise Tracker</h3>
-                        <p>Push-up, squat, plank tracking using MediaPipe/YOLOv8-pose/MoveNet. Rep counting via joint angle calculation. Real-time form analysis with corrective feedback.</p>
-                        <div class="bento-tags">
-                            <span class="bento-tag">MediaPipe</span>
-                            <span class="bento-tag">YOLOv8-pose</span>
-                            <span class="bento-tag">MoveNet</span>
-                        </div>
-                        <a href="https://github.com/miftahfaridhh/edge-ai-fitness" class="bento-link" target="_blank" rel="noopener">
-                            View on GitHub <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25"/></svg>
-                        </a>
+                        <h3 data-i18n="proj.fitness.title">Exercise Tracker</h3>
+                        <p data-i18n="proj.fitness.desc">Push-up, squat, plank tracking using MediaPipe/YOLOv8-pose/MoveNet. Rep counting via joint angle calculation. Real-time form analysis with corrective feedback.</p>
+                        <div class="bento-tags"><span class="bento-tag">MediaPipe</span><span class="bento-tag">YOLOv8-pose</span><span class="bento-tag">MoveNet</span></div>
+                        <a href="https://github.com/miftahfaridhh/edge-ai-fitness" class="bento-link" target="_blank" rel="noopener"><span data-i18n="proj.github">View on GitHub</span> <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25"/></svg></a>
                     </div>
                 </div>
             </div>
@@ -1090,37 +1032,23 @@
             <div class="projects-category">
                 <div class="category-header reveal">
                     <span class="category-dot blue"></span>
-                    <span class="category-title">IoT & Security Systems</span>
-                    <span class="category-count">2 projects</span>
+                    <span class="category-title" data-i18n="proj.cat3">IoT & Security Systems</span>
+                    <span class="category-count" data-i18n="proj.cat3_count">2 projects</span>
                 </div>
                 <div class="bento-grid">
                     <div class="bento-card reveal">
                         <div class="bento-card-type">IoT / LoRa Mesh / Monitoring</div>
-                        <h3>Server Room Monitoring</h3>
-                        <p>Multi-sensor IoT system: Arduino nodes with DHT22, dust (PM2.5/PM10), vibration, and sound sensors. LoRa wireless mesh to central receiver. Python backend logging to MariaDB with Telegram bot alerts on anomalies.</p>
-                        <div class="bento-tags">
-                            <span class="bento-tag">Arduino</span>
-                            <span class="bento-tag">LoRa</span>
-                            <span class="bento-tag">MariaDB</span>
-                            <span class="bento-tag">Telegram</span>
-                        </div>
-                        <a href="https://github.com/miftahfaridhh/server-room-monitoring" class="bento-link" target="_blank" rel="noopener">
-                            View on GitHub <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25"/></svg>
-                        </a>
+                        <h3 data-i18n="proj.server.title">Server Room Monitoring</h3>
+                        <p data-i18n="proj.server.desc">Multi-sensor IoT system: Arduino nodes with DHT22, dust (PM2.5/PM10), vibration, and sound sensors. LoRa wireless mesh to central receiver. Python backend logging to MariaDB with Telegram bot alerts on anomalies.</p>
+                        <div class="bento-tags"><span class="bento-tag">Arduino</span><span class="bento-tag">LoRa</span><span class="bento-tag">MariaDB</span><span class="bento-tag">Telegram</span></div>
+                        <a href="https://github.com/miftahfaridhh/server-room-monitoring" class="bento-link" target="_blank" rel="noopener"><span data-i18n="proj.github">View on GitHub</span> <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25"/></svg></a>
                     </div>
                     <div class="bento-card reveal">
                         <div class="bento-card-type">Computer Vision / Alerts</div>
-                        <h3>Intruder Detection</h3>
-                        <p>Real-time face detection using OpenCV DNN (Caffe SSD model) with automatic Telegram photo alerts. Configurable confidence threshold and frame skip rate. Non-blocking async notification delivery.</p>
-                        <div class="bento-tags">
-                            <span class="bento-tag">OpenCV DNN</span>
-                            <span class="bento-tag">Caffe SSD</span>
-                            <span class="bento-tag">Telegram Bot</span>
-                            <span class="bento-tag">asyncio</span>
-                        </div>
-                        <a href="https://github.com/miftahfaridhh/intruder-detection" class="bento-link" target="_blank" rel="noopener">
-                            View on GitHub <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25"/></svg>
-                        </a>
+                        <h3 data-i18n="proj.intruder.title">Intruder Detection</h3>
+                        <p data-i18n="proj.intruder.desc">Real-time face detection using OpenCV DNN (Caffe SSD model) with automatic Telegram photo alerts. Configurable confidence threshold and frame skip rate. Non-blocking async notification delivery.</p>
+                        <div class="bento-tags"><span class="bento-tag">OpenCV DNN</span><span class="bento-tag">Caffe SSD</span><span class="bento-tag">Telegram Bot</span><span class="bento-tag">asyncio</span></div>
+                        <a href="https://github.com/miftahfaridhh/intruder-detection" class="bento-link" target="_blank" rel="noopener"><span data-i18n="proj.github">View on GitHub</span> <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25"/></svg></a>
                     </div>
                 </div>
             </div>
@@ -1129,63 +1057,37 @@
             <div class="projects-category">
                 <div class="category-header reveal">
                     <span class="category-dot purple"></span>
-                    <span class="category-title">Web Applications</span>
-                    <span class="category-count">4 projects</span>
+                    <span class="category-title" data-i18n="proj.cat4">Web Applications</span>
+                    <span class="category-count" data-i18n="proj.cat4_count">4 projects</span>
                 </div>
                 <div class="bento-grid">
                     <div class="bento-card reveal">
                         <div class="bento-card-type">Speech-to-Text / Google Cloud</div>
-                        <h3>VTT &mdash; Voice-to-Text</h3>
-                        <p>Indonesian speech-to-text using Google Cloud Speech-to-Text API. FLAC audio processing via FFmpeg. Async long-running recognition optimized for Bahasa Indonesia (id-ID). Google Cloud Storage for audio files.</p>
-                        <div class="bento-tags">
-                            <span class="bento-tag">Laravel 5.6</span>
-                            <span class="bento-tag">Google Cloud</span>
-                            <span class="bento-tag">Vue.js</span>
-                            <span class="bento-tag">FFmpeg</span>
-                        </div>
-                        <a href="https://github.com/miftahfaridhh/vtt" class="bento-link" target="_blank" rel="noopener">
-                            View on GitHub <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25"/></svg>
-                        </a>
+                        <h3 data-i18n="proj.vtt.title">VTT &mdash; Voice-to-Text</h3>
+                        <p data-i18n="proj.vtt.desc">Indonesian speech-to-text using Google Cloud Speech-to-Text API. FLAC audio processing via FFmpeg. Async long-running recognition optimized for Bahasa Indonesia (id-ID). Google Cloud Storage for audio files.</p>
+                        <div class="bento-tags"><span class="bento-tag">Laravel 5.6</span><span class="bento-tag">Google Cloud</span><span class="bento-tag">Vue.js</span><span class="bento-tag">FFmpeg</span></div>
+                        <a href="https://github.com/miftahfaridhh/vtt" class="bento-link" target="_blank" rel="noopener"><span data-i18n="proj.github">View on GitHub</span> <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25"/></svg></a>
                     </div>
                     <div class="bento-card reveal">
                         <div class="bento-card-type">NLP / Social Platform</div>
-                        <h3>TweetBullyingDetector</h3>
-                        <p>Cyberbullying detection and reporting platform for Twitter/X. Keyword-based tweet search via Twitter API v1.1, community reporting system, and educational materials on cyberbullying awareness.</p>
-                        <div class="bento-tags">
-                            <span class="bento-tag">Laravel 7</span>
-                            <span class="bento-tag">Twitter API</span>
-                            <span class="bento-tag">PHP</span>
-                            <span class="bento-tag">MySQL</span>
-                        </div>
-                        <a href="https://github.com/miftahfaridhh/tweetbullyingdetector" class="bento-link" target="_blank" rel="noopener">
-                            View on GitHub <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25"/></svg>
-                        </a>
+                        <h3 data-i18n="proj.tweet.title">TweetBullyingDetector</h3>
+                        <p data-i18n="proj.tweet.desc">Cyberbullying detection and reporting platform for Twitter/X. Keyword-based tweet search via Twitter API v1.1, community reporting system, and educational materials on cyberbullying awareness.</p>
+                        <div class="bento-tags"><span class="bento-tag">Laravel 7</span><span class="bento-tag">Twitter API</span><span class="bento-tag">PHP</span><span class="bento-tag">MySQL</span></div>
+                        <a href="https://github.com/miftahfaridhh/tweetbullyingdetector" class="bento-link" target="_blank" rel="noopener"><span data-i18n="proj.github">View on GitHub</span> <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25"/></svg></a>
                     </div>
                     <div class="bento-card reveal">
                         <div class="bento-card-type">Management / Livewire</div>
-                        <h3>VeTracker &mdash; Vehicle Manager</h3>
-                        <p>Vehicle inventory management with CRUD operations, image upload, and multi-user team support with Jetstream 2FA authentication. Reactive UI with Livewire components.</p>
-                        <div class="bento-tags">
-                            <span class="bento-tag">Laravel 8</span>
-                            <span class="bento-tag">Livewire</span>
-                            <span class="bento-tag">Tailwind CSS</span>
-                        </div>
-                        <a href="https://github.com/miftahfaridhh/vetracker" class="bento-link" target="_blank" rel="noopener">
-                            View on GitHub <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25"/></svg>
-                        </a>
+                        <h3 data-i18n="proj.vetracker.title">VeTracker &mdash; Vehicle Manager</h3>
+                        <p data-i18n="proj.vetracker.desc">Vehicle inventory management with CRUD operations, image upload, and multi-user team support with Jetstream 2FA authentication. Reactive UI with Livewire components.</p>
+                        <div class="bento-tags"><span class="bento-tag">Laravel 8</span><span class="bento-tag">Livewire</span><span class="bento-tag">Tailwind CSS</span></div>
+                        <a href="https://github.com/miftahfaridhh/vetracker" class="bento-link" target="_blank" rel="noopener"><span data-i18n="proj.github">View on GitHub</span> <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25"/></svg></a>
                     </div>
                     <div class="bento-card reveal">
                         <div class="bento-card-type">Tournament / Events</div>
-                        <h3>Brocket &mdash; Bracket Manager</h3>
-                        <p>Tournament management with auto-generated randomized brackets, podium/medal tracking, public bracket sharing, and email notifications. Jetstream auth with 2FA. Team project (7 members).</p>
-                        <div class="bento-tags">
-                            <span class="bento-tag">Laravel 8</span>
-                            <span class="bento-tag">Livewire</span>
-                            <span class="bento-tag">Tailwind CSS</span>
-                        </div>
-                        <a href="https://github.com/miftahfaridhh/brocket" class="bento-link" target="_blank" rel="noopener">
-                            View on GitHub <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25"/></svg>
-                        </a>
+                        <h3 data-i18n="proj.brocket.title">Brocket &mdash; Bracket Manager</h3>
+                        <p data-i18n="proj.brocket.desc">Tournament management with auto-generated randomized brackets, podium/medal tracking, public bracket sharing, and email notifications. Jetstream auth with 2FA. Team project (7 members).</p>
+                        <div class="bento-tags"><span class="bento-tag">Laravel 8</span><span class="bento-tag">Livewire</span><span class="bento-tag">Tailwind CSS</span></div>
+                        <a href="https://github.com/miftahfaridhh/brocket" class="bento-link" target="_blank" rel="noopener"><span data-i18n="proj.github">View on GitHub</span> <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25"/></svg></a>
                     </div>
                 </div>
             </div>
@@ -1196,23 +1098,23 @@
     <section id="awards">
         <div class="container">
             <div class="section-header reveal">
-                <div class="section-tag">Honors</div>
-                <h2 class="section-title">Awards & Competitions</h2>
-                <p class="section-desc">Recognized in international and national robotics competitions representing Indonesia.</p>
+                <div class="section-tag" data-i18n="awards.tag">Honors</div>
+                <h2 class="section-title" data-i18n="awards.title">Awards & Competitions</h2>
+                <p class="section-desc" data-i18n="awards.desc">Recognized in international and national robotics competitions representing Indonesia.</p>
             </div>
             <div class="awards-grid">
                 <div class="award-card reveal">
                     <div class="award-badge gold">&#129351;</div>
                     <div>
-                        <div class="award-place">1st Place</div>
+                        <div class="award-place" data-i18n="awards.a1.place">1st Place</div>
                         <h3>ASEAN MATE ROV &mdash; Explorer Category</h3>
-                        <p class="award-desc">International underwater robotics competition</p>
+                        <p class="award-desc" data-i18n="awards.a1.desc">International underwater robotics competition</p>
                     </div>
                 </div>
                 <div class="award-card reveal">
                     <div class="award-badge bronze">&#129353;</div>
                     <div>
-                        <div class="award-place">3rd Place</div>
+                        <div class="award-place" data-i18n="awards.a2.place">3rd Place</div>
                         <h3>12th AUVSI International Roboboat</h3>
                         <p class="award-desc">Miami, FL, USA &middot; 2019</p>
                     </div>
@@ -1220,7 +1122,7 @@
                 <div class="award-card reveal">
                     <div class="award-badge bronze">&#129353;</div>
                     <div>
-                        <div class="award-place">3rd Place &mdash; Sensor Optimization</div>
+                        <div class="award-place" data-i18n="awards.a3.place">3rd Place &mdash; Sensor Optimization</div>
                         <h3>14th AUVSI International Roboboat</h3>
                         <p class="award-desc">2021</p>
                     </div>
@@ -1228,17 +1130,17 @@
                 <div class="award-card reveal">
                     <div class="award-badge bronze">&#129353;</div>
                     <div>
-                        <div class="award-place">3rd Place</div>
+                        <div class="award-place" data-i18n="awards.a4.place">3rd Place</div>
                         <h3>KKCTBN 2019</h3>
-                        <p class="award-desc">Kontes Kapal Cepat Tak Berawak Nasional, Indonesia</p>
+                        <p class="award-desc" data-i18n="awards.a4.desc">Kontes Kapal Cepat Tak Berawak Nasional, Indonesia</p>
                     </div>
                 </div>
                 <div class="award-card reveal">
                     <div class="award-badge special">&#127942;</div>
                     <div>
-                        <div class="award-place">Best Poster</div>
+                        <div class="award-place" data-i18n="awards.a5.place">Best Poster</div>
                         <h3>KKCTBN 2019</h3>
-                        <p class="award-desc">Kontes Kapal Cepat Tak Berawak Nasional, Indonesia</p>
+                        <p class="award-desc" data-i18n="awards.a5.desc">Kontes Kapal Cepat Tak Berawak Nasional, Indonesia</p>
                     </div>
                 </div>
             </div>
@@ -1249,39 +1151,39 @@
     <section class="section-alt">
         <div class="container">
             <div class="section-header reveal">
-                <div class="section-tag">Research</div>
-                <h2 class="section-title">Government-Funded Projects</h2>
-                <p class="section-desc">Contributed to major national research projects at Kookmin University, funded by Korean government ministries.</p>
+                <div class="section-tag" data-i18n="research.tag">Research</div>
+                <h2 class="section-title" data-i18n="research.title">Government-Funded Projects</h2>
+                <p class="section-desc" data-i18n="research.desc">Contributed to major national research projects at Kookmin University, funded by Korean government ministries.</p>
             </div>
             <div class="research-grid">
                 <div class="research-card reveal">
                     <div class="research-funder">MOTIE</div>
-                    <h3>Renewable Energy Grid Stabilization</h3>
+                    <h3 data-i18n="research.r1">Renewable Energy Grid Stabilization</h3>
                     <p class="research-period">2022 &ndash; 2024</p>
                 </div>
                 <div class="research-card reveal">
                     <div class="research-funder">MSIT</div>
-                    <h3>5G Multi-Band Industrial Small Cell Development</h3>
+                    <h3 data-i18n="research.r2">5G Multi-Band Industrial Small Cell Development</h3>
                     <p class="research-period">2022 &ndash; 2024</p>
                 </div>
                 <div class="research-card reveal">
                     <div class="research-funder">MSIT</div>
-                    <h3>Intelligent IoE Data Research Platform</h3>
+                    <h3 data-i18n="research.r3">Intelligent IoE Data Research Platform</h3>
                     <p class="research-period">2022 &ndash; 2024</p>
                 </div>
                 <div class="research-card reveal">
                     <div class="research-funder">MSIT</div>
-                    <h3>V2X Quantum AI Triple Sensor OCC System</h3>
+                    <h3 data-i18n="research.r4">V2X Quantum AI Triple Sensor OCC System</h3>
                     <p class="research-period">2022 &ndash; 2024</p>
                 </div>
                 <div class="research-card reveal">
                     <div class="research-funder">MSS</div>
-                    <h3>VPP ESS Service Platform Development</h3>
+                    <h3 data-i18n="research.r5">VPP ESS Service Platform Development</h3>
                     <p class="research-period">2022 &ndash; 2024</p>
                 </div>
                 <div class="research-card reveal">
                     <div class="research-funder">MSIT</div>
-                    <h3>Ultra High Rate OCC & Precision Localization</h3>
+                    <h3 data-i18n="research.r6">Ultra High Rate OCC & Precision Localization</h3>
                     <p class="research-period">2022 &ndash; 2024</p>
                 </div>
             </div>
@@ -1292,66 +1194,66 @@
     <section id="experience">
         <div class="container">
             <div class="section-header reveal">
-                <div class="section-tag">Career</div>
-                <h2 class="section-title">Professional Journey</h2>
+                <div class="section-tag" data-i18n="exp.tag">Career</div>
+                <h2 class="section-title" data-i18n="exp.title">Professional Journey</h2>
             </div>
             <div class="exp-timeline">
                 <div class="exp-item reveal">
-                    <div class="exp-date">Oct 2025 &mdash; Present</div>
+                    <div class="exp-date" data-i18n="exp.e1.date">Oct 2025 &mdash; Present</div>
                     <div class="exp-content">
-                        <h3>Physical AI Engineer</h3>
+                        <h3 data-i18n="exp.e1.role">Physical AI Engineer</h3>
                         <h4><a href="https://orinu.ai/" target="_blank" rel="noopener">orinu.ai</a> &middot; Hwaseong, South Korea</h4>
                         <ul>
-                            <li>LLM fine-tuning for translation & Retrieval-Augmented Generation (RAG) projects</li>
-                            <li>Smart Braille Printer development using robotic systems</li>
-                            <li>Robotic arm development with ROS 2 on Jetson platforms</li>
+                            <li data-i18n="exp.e1.l1">LLM fine-tuning for translation & Retrieval-Augmented Generation (RAG) projects</li>
+                            <li data-i18n="exp.e1.l2">Smart Braille Printer development using robotic systems</li>
+                            <li data-i18n="exp.e1.l3">Robotic arm development with ROS 2 on Jetson platforms</li>
                         </ul>
                     </div>
                 </div>
                 <div class="exp-item reveal">
                     <div class="exp-date">Sep 2022 &mdash; Aug 2024</div>
                     <div class="exp-content">
-                        <h3>AI & IoT Researcher</h3>
+                        <h3 data-i18n="exp.e2.role">AI & IoT Researcher</h3>
                         <h4>Kookmin University &middot; Prof. Jang Yeong Min's Lab, Seoul</h4>
                         <ul>
-                            <li>Engineered LED detection and tracking systems for adverse weather conditions</li>
-                            <li>Built time-series forecasting models to predict PV power generation using weather data</li>
-                            <li>Published 2 international journals and 2 conference papers within 2 years</li>
-                            <li>Contributed to 8 government-funded research projects (MOTIE, MSIT, MSS)</li>
+                            <li data-i18n="exp.e2.l1">Engineered LED detection and tracking systems for adverse weather conditions</li>
+                            <li data-i18n="exp.e2.l2">Built time-series forecasting models to predict PV power generation using weather data</li>
+                            <li data-i18n="exp.e2.l3">Published 2 international journals and 2 conference papers within 2 years</li>
+                            <li data-i18n="exp.e2.l4">Contributed to 8 government-funded research projects (MOTIE, MSIT, MSS)</li>
                         </ul>
                     </div>
                 </div>
                 <div class="exp-item reveal">
                     <div class="exp-date">Feb 2022 &mdash; Jun 2022</div>
                     <div class="exp-content">
-                        <h3>Internet of Things Intern</h3>
+                        <h3 data-i18n="exp.e3.role">Internet of Things Intern</h3>
                         <h4>PT. XL Axiata Tbk &middot; Jakarta, Indonesia</h4>
                         <ul>
-                            <li>Drone project development with 5G connectivity</li>
-                            <li>Implemented computer vision on drones with 100% success rate</li>
+                            <li data-i18n="exp.e3.l1">Drone project development with 5G connectivity</li>
+                            <li data-i18n="exp.e3.l2">Implemented computer vision on drones with 100% success rate</li>
                         </ul>
                     </div>
                 </div>
                 <div class="exp-item reveal">
                     <div class="exp-date">Sep 2021 &mdash; Feb 2022</div>
                     <div class="exp-content">
-                        <h3>IT Business Analyst</h3>
+                        <h3 data-i18n="exp.e4.role">IT Business Analyst</h3>
                         <h4>PT. Infomedia Nusantara &middot; Jakarta, Indonesia</h4>
                         <ul>
-                            <li>Analyzed and developed CRM solutions for startups and state-owned companies</li>
-                            <li>Led NLP-based Audio Transcriber project for quality assurance using GCP</li>
+                            <li data-i18n="exp.e4.l1">Analyzed and developed CRM solutions for startups and state-owned companies</li>
+                            <li data-i18n="exp.e4.l2">Led NLP-based Audio Transcriber project for quality assurance using GCP</li>
                         </ul>
                     </div>
                 </div>
                 <div class="exp-item reveal">
                     <div class="exp-date">Nov 2018 &mdash; Jul 2021</div>
                     <div class="exp-content">
-                        <h3>Vice Head of Programmer / AI Engineer</h3>
-                        <h4>AMV UI & Tim Robotika &mdash; University of Indonesia</h4>
+                        <h3 data-i18n="exp.e5.role">Vice Head of Programmer / AI Engineer</h3>
+                        <h4 data-i18n-html="exp.e5.org">AMV UI & Tim Robotika &mdash; University of Indonesia</h4>
                         <ul>
-                            <li>Managed 6 AI Division members developing autonomous control algorithms for USV and AUV robots</li>
-                            <li>Competed in international competitions: AUVSI Roboboat (USA), ASEAN MATE ROV, KKCTBN</li>
-                            <li>Built automation and control systems using ROS, Arduino, and computer vision</li>
+                            <li data-i18n="exp.e5.l1">Managed 6 AI Division members developing autonomous control algorithms for USV and AUV robots</li>
+                            <li data-i18n="exp.e5.l2">Competed in international competitions: AUVSI Roboboat (USA), ASEAN MATE ROV, KKCTBN</li>
+                            <li data-i18n="exp.e5.l3">Built automation and control systems using ROS, Arduino, and computer vision</li>
                         </ul>
                     </div>
                 </div>
@@ -1360,20 +1262,20 @@
             <!-- Education -->
             <div style="margin-top: 5rem;">
                 <div class="section-header reveal">
-                    <div class="section-tag">Education</div>
-                    <h2 class="section-title">Academic Background</h2>
+                    <div class="section-tag" data-i18n="edu.tag">Education</div>
+                    <h2 class="section-title" data-i18n="edu.title">Academic Background</h2>
                 </div>
                 <div class="edu-grid">
                     <div class="edu-card reveal">
-                        <div class="edu-badge">Master's Degree</div>
+                        <div class="edu-badge" data-i18n="edu.e1.degree">Master's Degree</div>
                         <h3>Kookmin University</h3>
-                        <p class="edu-field">Electrical & Electronics Engineering</p>
+                        <p class="edu-field" data-i18n="edu.e1.field">Electrical & Electronics Engineering</p>
                         <p class="edu-period">Sep 2022 &ndash; Aug 2024 &middot; Seoul, South Korea</p>
                     </div>
                     <div class="edu-card reveal">
-                        <div class="edu-badge">Bachelor's Degree</div>
-                        <h3>University of Indonesia</h3>
-                        <p class="edu-field">Computer Engineering &middot; GPA 3.43</p>
+                        <div class="edu-badge" data-i18n="edu.e2.degree">Bachelor's Degree</div>
+                        <h3 data-i18n="edu.e2.school">University of Indonesia</h3>
+                        <p class="edu-field" data-i18n="edu.e2.field">Computer Engineering &middot; GPA 3.43</p>
                         <p class="edu-period">Aug 2018 &ndash; Sep 2022 &middot; Depok, Indonesia</p>
                     </div>
                 </div>
@@ -1385,61 +1287,45 @@
     <section class="section-dark">
         <div class="container">
             <div class="section-header reveal">
-                <div class="section-tag">Stack</div>
-                <h2 class="section-title">Technical Toolbox</h2>
-                <p class="section-desc">Technologies and tools across engineering, research, and development.</p>
+                <div class="section-tag" data-i18n="skills.tag">Stack</div>
+                <h2 class="section-title" data-i18n="skills.title">Technical Toolbox</h2>
+                <p class="section-desc" data-i18n="skills.desc">Technologies and tools across engineering, research, and development.</p>
             </div>
             <div class="skills-grid reveal">
                 <div class="skill-group">
-                    <h3>Programming Languages</h3>
+                    <h3 data-i18n="skills.g1">Programming Languages</h3>
                     <div class="skill-items">
-                        <span class="skill-item">Python</span>
-                        <span class="skill-item">C/C++</span>
-                        <span class="skill-item">Java</span>
-                        <span class="skill-item">C#</span>
-                        <span class="skill-item">MATLAB</span>
-                        <span class="skill-item">JavaScript</span>
-                        <span class="skill-item">TypeScript</span>
-                        <span class="skill-item">PHP</span>
+                        <span class="skill-item">Python</span><span class="skill-item">C/C++</span>
+                        <span class="skill-item">Java</span><span class="skill-item">C#</span>
+                        <span class="skill-item">MATLAB</span><span class="skill-item">JavaScript</span>
+                        <span class="skill-item">TypeScript</span><span class="skill-item">PHP</span>
                     </div>
                 </div>
                 <div class="skill-group">
-                    <h3>AI & Machine Learning</h3>
+                    <h3 data-i18n="skills.g2">AI & Machine Learning</h3>
                     <div class="skill-items">
-                        <span class="skill-item">TensorFlow</span>
-                        <span class="skill-item">PyTorch</span>
-                        <span class="skill-item">LLM Fine-Tuning</span>
-                        <span class="skill-item">LoRA / QLoRA</span>
-                        <span class="skill-item">RAG</span>
-                        <span class="skill-item">Computer Vision</span>
-                        <span class="skill-item">NLP</span>
-                        <span class="skill-item">TensorRT</span>
-                        <span class="skill-item">ONNX</span>
-                        <span class="skill-item">Scikit-learn</span>
+                        <span class="skill-item">TensorFlow</span><span class="skill-item">PyTorch</span>
+                        <span class="skill-item">LLM Fine-Tuning</span><span class="skill-item">LoRA / QLoRA</span>
+                        <span class="skill-item">RAG</span><span class="skill-item">Computer Vision</span>
+                        <span class="skill-item">NLP</span><span class="skill-item">TensorRT</span>
+                        <span class="skill-item">ONNX</span><span class="skill-item">Scikit-learn</span>
                     </div>
                 </div>
                 <div class="skill-group">
-                    <h3>Robotics & Hardware</h3>
+                    <h3 data-i18n="skills.g3">Robotics & Hardware</h3>
                     <div class="skill-items">
-                        <span class="skill-item">ROS 2</span>
-                        <span class="skill-item">NVIDIA Jetson</span>
-                        <span class="skill-item">Arduino</span>
-                        <span class="skill-item">LoRa</span>
-                        <span class="skill-item">Embedded Systems</span>
-                        <span class="skill-item">Sensor Integration</span>
+                        <span class="skill-item">ROS 2</span><span class="skill-item">NVIDIA Jetson</span>
+                        <span class="skill-item">Arduino</span><span class="skill-item">LoRa</span>
+                        <span class="skill-item">Embedded Systems</span><span class="skill-item">Sensor Integration</span>
                     </div>
                 </div>
                 <div class="skill-group">
-                    <h3>Tools & Platforms</h3>
+                    <h3 data-i18n="skills.g4">Tools & Platforms</h3>
                     <div class="skill-items">
-                        <span class="skill-item">Docker</span>
-                        <span class="skill-item">Linux</span>
-                        <span class="skill-item">Git</span>
-                        <span class="skill-item">GCP</span>
-                        <span class="skill-item">AWS</span>
-                        <span class="skill-item">FastAPI</span>
-                        <span class="skill-item">React</span>
-                        <span class="skill-item">Laravel</span>
+                        <span class="skill-item">Docker</span><span class="skill-item">Linux</span>
+                        <span class="skill-item">Git</span><span class="skill-item">GCP</span>
+                        <span class="skill-item">AWS</span><span class="skill-item">FastAPI</span>
+                        <span class="skill-item">React</span><span class="skill-item">Laravel</span>
                         <span class="skill-item">PostgreSQL</span>
                     </div>
                 </div>
@@ -1452,11 +1338,9 @@
         <div class="container">
             <div class="contact-inner">
                 <div class="reveal">
-                    <div class="section-tag">Contact</div>
-                    <h2 class="contact-title">Let's build something together.</h2>
-                    <p class="contact-subtitle">
-                        Available for AI/robotics engineering roles, research collaborations, and consulting projects. Currently based in Seoul, South Korea.
-                    </p>
+                    <div class="section-tag" data-i18n="contact.tag">Contact</div>
+                    <h2 class="contact-title" data-i18n="contact.title">Let's build something together.</h2>
+                    <p class="contact-subtitle" data-i18n="contact.subtitle">Available for AI/robotics engineering roles, research collaborations, and consulting projects. Currently based in Seoul, South Korea.</p>
                     <a href="mailto:muhammadmiftahfaridh@gmail.com" class="contact-email-display">muhammadmiftahfaridh@gmail.com</a>
                 </div>
                 <div class="contact-links-grid reveal reveal-delay-1">
@@ -1494,25 +1378,564 @@
     </footer>
 
     <script>
-        // Nav scroll
-        const navbar = document.getElementById('navbar');
-        window.addEventListener('scroll', () => {
-            navbar.classList.toggle('scrolled', window.scrollY > 40);
+    // ===== TRANSLATIONS =====
+    const T = {
+    en: {
+        // Nav
+        "nav.about": "About",
+        "nav.expertise": "Expertise",
+        "nav.papers": "Papers",
+        "nav.projects": "Projects",
+        "nav.career": "Career",
+        "nav.contact": "Contact",
+        // Hero
+        "hero.tag": "Physical AI Engineer",
+        "hero.name": 'Muhammad Miftah <em>Faridh</em>',
+        "hero.subtitle": "Building intelligent systems at the intersection of AI, robotics, and edge computing. From LLM fine-tuning and smart braille printers to autonomous marine vehicles.",
+        "hero.affiliation": 'M.S. Electronics Engineering, Kookmin University &mdash; Currently at <a href="https://orinu.ai/" target="_blank" rel="noopener">orinu.ai</a>, Seoul',
+        "hero.cta": "Get in Touch",
+        "hero.stat1": "Publications",
+        "hero.stat2": "Int'l Awards",
+        "hero.stat3": "Gov. Projects",
+        "hero.stat4": "Open Source",
+        // About
+        "about.tag": "About",
+        "about.title": "Engineer, Researcher<br>& Problem Solver",
+        "about.p1": "AI Developer and Robotics Engineer with hands-on experience in LLM fine-tuning (T5, Gemma, LLaMA with LoRA, QLoRA, and RAG) and real-time robotic systems using ROS 2 and NVIDIA Jetson platforms. Proven track record in applied research, publishing papers in IEEE Access and MDPI Sensors, and building intelligent systems across industries.",
+        "about.p2": "From autonomous marine vehicles at University of Indonesia's Robotics Team to 5G-connected drones at XL Axiata, from Optical Camera Communication research at Kookmin University to Smart Braille Printers at orinu.ai \u2014 I bridge AI and robotics to solve real-world problems.",
+        "about.card1.title": "M.S. EE, Kookmin University",
+        "about.card1.desc": "Seoul, South Korea (2022 \u2013 2024)",
+        "about.card2.title": "B.S. Computer Engineering",
+        "about.card2.desc": "University of Indonesia (2018 \u2013 2022)",
+        "about.card3.title": "Physical AI Engineer",
+        "about.card3.desc": '<a href="https://orinu.ai/" target="_blank" rel="noopener" style="color: var(--accent);">orinu.ai</a> \u2014 Hwaseong, KR',
+        "about.card4.title": "Based in Seoul",
+        "about.card4.desc": "Open to global opportunities",
+        // Expertise
+        "expertise.tag": "Expertise",
+        "expertise.title": "Core Competencies",
+        "expertise.desc": "Bridging AI research and engineering across robotics, edge computing, communications, and intelligent systems.",
+        "expertise.c1.title": "LLM & Generative AI",
+        "expertise.c1.desc": "Fine-tuning large language models (T5, Gemma, LLaMA) with LoRA, QLoRA, and RAG pipelines. Building translation engines and conversational AI for production deployment.",
+        "expertise.c2.title": "Robotics & ROS 2",
+        "expertise.c2.desc": "Real-time robotic systems on Jetson platforms. Robotic arms, autonomous marine vehicles (USV/AUV), and drone systems with integrated computer vision pipelines.",
+        "expertise.c3.title": "Edge AI & Deployment",
+        "expertise.c3.desc": "8+ production Edge AI systems on NVIDIA Jetson. TensorRT INT8/FP16 optimization achieving 67% model compression. Full-stack: FastAPI + React + WebSocket streaming.",
+        "expertise.c4.title": "Deep Learning",
+        "expertise.c4.desc": "CNN, LSTM, GCN, and hybrid architectures for signal processing, image recognition, and time-series forecasting. Published research on solar energy prediction and OCC systems.",
+        "expertise.c5.title": "Optical Camera Comm.",
+        "expertise.c5.desc": "2D MIMO OCC systems, CSMA/CA MAC protocol design for optical communication, and ultra-high-rate OCC with precision localization. Published in IEEE Access.",
+        "expertise.c6.title": "IoT & Energy Systems",
+        "expertise.c6.desc": "Intelligent IoE platforms, sensor integration with LoRa mesh networks, solar energy forecasting with GCN-BiLSTM models, VPP ESS platforms, and V2X communication.",
+        // Publications
+        "pub.tag": "Publications",
+        "pub.title": "Research Papers",
+        "pub.desc": "Peer-reviewed publications in international journals, conferences, and technical competitions.",
+        // Projects
+        "proj.tag": "Portfolio",
+        "proj.title": "Projects & Open Source",
+        "proj.desc": "AI/ML research, Edge AI deployments on Jetson, IoT systems, and full-stack applications.",
+        "proj.github": "View on GitHub",
+        "proj.cat1": "AI & Deep Learning Research",
+        "proj.cat1_count": "2 projects",
+        "proj.cat2": "Edge AI on NVIDIA Jetson",
+        "proj.cat2_count": "8 projects",
+        "proj.cat3": "IoT & Security Systems",
+        "proj.cat3_count": "2 projects",
+        "proj.cat4": "Web Applications",
+        "proj.cat4_count": "4 projects",
+        "proj.pv.title": "PV Solar Power Forecasting API",
+        "proj.pv.desc": "Next-day photovoltaic solar power prediction across 10 South Korean sites. Flask REST API with 6 deep learning architectures trained on Korea Meteorological Administration weather data.",
+        "proj.pv.detail": '<strong>Models:</strong> BiLSTM, Stacked BiLSTM, LSTM, ConvLSTM, RNN \u2014 trained on 12 weather features (soil temp, solar radiation, cloud cover, etc.) with 24-hour sliding window producing 24-hour forecasts. MinMax normalization with tanh activation.<br><br><strong>Result:</strong> BiLSTM variants achieved lowest prediction error. Automated daily predictions at 10:00 and 16:00 KST. Published in Sensors 2023 (MDPI) and ICUFN 2023.',
+        "proj.pv.m1": "Solar sites",
+        "proj.pv.m2": "DL models",
+        "proj.pv.m3": "Features",
+        "proj.energy.title": "Smart Home Energy Forecasting",
+        "proj.energy.desc": "Comparative study: ARIMA/SARIMA/SARIMAX vs LSTM/BiLSTM/GRU/RNN on 503,910 smart meter records with weather features.",
+        "proj.energy.detail": '<strong>Key finding:</strong> LSTM Multivariate achieves MSE=0.022, MAE=0.110 \u2014 significantly outperforming classical methods. Extended to 17 South Korean regions with BiLSTM achieving R\u00B2=0.9549 on Busan data.',
+        "proj.langgraph.title": "LangGraph Chatbot Playground",
+        "proj.langgraph.desc": "Experimental conversational AI with LangGraph \u2014 stateful multi-turn dialogue, agent workflows, and LLM orchestration using OpenAI/Anthropic/OpenRouter APIs.",
+        "proj.deploy.title": "Edge AI Deployment Platform",
+        "proj.deploy.desc": "Central deployment hub for all 8 edge AI projects. TensorRT INT8/FP16 model compression achieving 67% total size reduction (482 MB to 152 MB). Includes all compressed models, inference scripts, SCP/USB transfer utilities, and shared Python library with TensorRT inference engine, async video capture, WebSocket streaming, and Docker base images.",
+        "proj.deploy.m1": "Compression",
+        "proj.deploy.m2": "Total size",
+        "proj.deploy.m3": "AI projects",
+        "proj.objdet.title": "Object Detection",
+        "proj.objdet.desc": "Real-time 80-class COCO detection. Full stack: FastAPI backend, React/TypeScript frontend, WebSocket streaming. TensorRT FP16 targeting 20-25 FPS at 416x416 on Jetson Nano.",
+        "proj.attend.title": "Face Recognition Attendance",
+        "proj.attend.desc": "InsightFace buffalo_s with RetinaFace + ArcFace recognition + MiniFASNet anti-spoofing. Multi-angle enrollment (5 angles). Full stack with PostgreSQL. INT8 compressed: 158 MB to 40 MB. 15-20 FPS.",
+        "proj.ppe.title": "PPE Detection",
+        "proj.ppe.desc": "Multi-PPE detection (Hardhat, Vest, Glasses, Gloves, Mask) with zone-based compliance for Construction/Manufacturing/Chemical zones. YOLOv8n with TensorRT INT8 (3.4 MB model).",
+        "proj.alpr.title": "License Plate Recognition",
+        "proj.alpr.desc": "YOLOv8 plate detection + EasyOCR/PaddleOCR. SORT vehicle tracking. Indonesian plate format validation. Watchlist monitoring with alerts. Full stack with PostgreSQL + React.",
+        "proj.security.title": "Security Analytics",
+        "proj.security.desc": "Motion detection (MOG2/KNN), polygon zone-based intrusion detection, and loitering detection with time tracking. YOLOv8n person detection + DeepSort tracking. INT8/FP16 compressed.",
+        "proj.analytics.title": "People Analytics",
+        "proj.analytics.desc": "Line crossing counter, zone occupancy monitoring, traffic flow analysis. HOG fallback when no ML model available. JSON statistics output. 25-30 FPS with TensorRT on Jetson.",
+        "proj.gesture.title": "Hand Gesture Recognition",
+        "proj.gesture.desc": "MediaPipe 21-landmark hand tracking with 9 gesture classes (FIST, OPEN_PALM, THUMBS_UP, etc.). Custom ML classifier training pipeline. Action mapping with cooldown. 15-20 FPS on Jetson.",
+        "proj.fitness.title": "Exercise Tracker",
+        "proj.fitness.desc": "Push-up, squat, plank tracking using MediaPipe/YOLOv8-pose/MoveNet. Rep counting via joint angle calculation. Real-time form analysis with corrective feedback.",
+        "proj.server.title": "Server Room Monitoring",
+        "proj.server.desc": "Multi-sensor IoT system: Arduino nodes with DHT22, dust (PM2.5/PM10), vibration, and sound sensors. LoRa wireless mesh to central receiver. Python backend logging to MariaDB with Telegram bot alerts on anomalies.",
+        "proj.intruder.title": "Intruder Detection",
+        "proj.intruder.desc": "Real-time face detection using OpenCV DNN (Caffe SSD model) with automatic Telegram photo alerts. Configurable confidence threshold and frame skip rate. Non-blocking async notification delivery.",
+        "proj.vtt.title": "VTT \u2014 Voice-to-Text",
+        "proj.vtt.desc": "Indonesian speech-to-text using Google Cloud Speech-to-Text API. FLAC audio processing via FFmpeg. Async long-running recognition optimized for Bahasa Indonesia (id-ID). Google Cloud Storage for audio files.",
+        "proj.tweet.title": "TweetBullyingDetector",
+        "proj.tweet.desc": "Cyberbullying detection and reporting platform for Twitter/X. Keyword-based tweet search via Twitter API v1.1, community reporting system, and educational materials on cyberbullying awareness.",
+        "proj.vetracker.title": "VeTracker \u2014 Vehicle Manager",
+        "proj.vetracker.desc": "Vehicle inventory management with CRUD operations, image upload, and multi-user team support with Jetstream 2FA authentication. Reactive UI with Livewire components.",
+        "proj.brocket.title": "Brocket \u2014 Bracket Manager",
+        "proj.brocket.desc": "Tournament management with auto-generated randomized brackets, podium/medal tracking, public bracket sharing, and email notifications. Jetstream auth with 2FA. Team project (7 members).",
+        // Awards
+        "awards.tag": "Honors",
+        "awards.title": "Awards & Competitions",
+        "awards.desc": "Recognized in international and national robotics competitions representing Indonesia.",
+        "awards.a1.place": "1st Place",
+        "awards.a1.desc": "International underwater robotics competition",
+        "awards.a2.place": "3rd Place",
+        "awards.a3.place": "3rd Place \u2014 Sensor Optimization",
+        "awards.a4.place": "3rd Place",
+        "awards.a4.desc": "Kontes Kapal Cepat Tak Berawak Nasional, Indonesia",
+        "awards.a5.place": "Best Poster",
+        "awards.a5.desc": "Kontes Kapal Cepat Tak Berawak Nasional, Indonesia",
+        // Research
+        "research.tag": "Research",
+        "research.title": "Government-Funded Projects",
+        "research.desc": "Contributed to major national research projects at Kookmin University, funded by Korean government ministries.",
+        "research.r1": "Renewable Energy Grid Stabilization",
+        "research.r2": "5G Multi-Band Industrial Small Cell Development",
+        "research.r3": "Intelligent IoE Data Research Platform",
+        "research.r4": "V2X Quantum AI Triple Sensor OCC System",
+        "research.r5": "VPP ESS Service Platform Development",
+        "research.r6": "Ultra High Rate OCC & Precision Localization",
+        // Experience
+        "exp.tag": "Career",
+        "exp.title": "Professional Journey",
+        "exp.e1.date": "Oct 2025 \u2014 Present",
+        "exp.e1.role": "Physical AI Engineer",
+        "exp.e1.l1": "LLM fine-tuning for translation & Retrieval-Augmented Generation (RAG) projects",
+        "exp.e1.l2": "Smart Braille Printer development using robotic systems",
+        "exp.e1.l3": "Robotic arm development with ROS 2 on Jetson platforms",
+        "exp.e2.role": "AI & IoT Researcher",
+        "exp.e2.l1": "Engineered LED detection and tracking systems for adverse weather conditions",
+        "exp.e2.l2": "Built time-series forecasting models to predict PV power generation using weather data",
+        "exp.e2.l3": "Published 2 international journals and 2 conference papers within 2 years",
+        "exp.e2.l4": "Contributed to 8 government-funded research projects (MOTIE, MSIT, MSS)",
+        "exp.e3.role": "Internet of Things Intern",
+        "exp.e3.l1": "Drone project development with 5G connectivity",
+        "exp.e3.l2": "Implemented computer vision on drones with 100% success rate",
+        "exp.e4.role": "IT Business Analyst",
+        "exp.e4.l1": "Analyzed and developed CRM solutions for startups and state-owned companies",
+        "exp.e4.l2": "Led NLP-based Audio Transcriber project for quality assurance using GCP",
+        "exp.e5.role": "Vice Head of Programmer / AI Engineer",
+        "exp.e5.org": "AMV UI & Tim Robotika \u2014 University of Indonesia",
+        "exp.e5.l1": "Managed 6 AI Division members developing autonomous control algorithms for USV and AUV robots",
+        "exp.e5.l2": "Competed in international competitions: AUVSI Roboboat (USA), ASEAN MATE ROV, KKCTBN",
+        "exp.e5.l3": "Built automation and control systems using ROS, Arduino, and computer vision",
+        // Education
+        "edu.tag": "Education",
+        "edu.title": "Academic Background",
+        "edu.e1.degree": "Master's Degree",
+        "edu.e1.field": "Electrical & Electronics Engineering",
+        "edu.e2.degree": "Bachelor's Degree",
+        "edu.e2.school": "University of Indonesia",
+        "edu.e2.field": "Computer Engineering \u00B7 GPA 3.43",
+        // Skills
+        "skills.tag": "Stack",
+        "skills.title": "Technical Toolbox",
+        "skills.desc": "Technologies and tools across engineering, research, and development.",
+        "skills.g1": "Programming Languages",
+        "skills.g2": "AI & Machine Learning",
+        "skills.g3": "Robotics & Hardware",
+        "skills.g4": "Tools & Platforms",
+        // Contact
+        "contact.tag": "Contact",
+        "contact.title": "Let's build something together.",
+        "contact.subtitle": "Available for AI/robotics engineering roles, research collaborations, and consulting projects. Currently based in Seoul, South Korea.",
+    },
+
+    ko: {
+        "nav.about": "\uC18C\uAC1C",
+        "nav.expertise": "\uC804\uBB38\uBD84\uC57C",
+        "nav.papers": "\uB17C\uBB38",
+        "nav.projects": "\uD504\uB85C\uC81D\uD2B8",
+        "nav.career": "\uACBD\uB825",
+        "nav.contact": "\uC5F0\uB77D\uCC98",
+        "hero.tag": "\uD53C\uC9C0\uCEEC AI \uC5D4\uC9C0\uB2C8\uC5B4",
+        "hero.name": 'Muhammad Miftah <em>Faridh</em>',
+        "hero.subtitle": "AI, \uB85C\uBCF4\uD2F1\uC2A4, \uC5E3\uC9C0 \uCEF4\uD4E8\uD305\uC758 \uAD50\uCC28\uC810\uC5D0\uC11C \uC9C0\uB2A5\uD615 \uC2DC\uC2A4\uD15C\uC744 \uAD6C\uCD95\uD569\uB2C8\uB2E4. LLM \uD30C\uC778\uD29C\uB2DD, \uC2A4\uB9C8\uD2B8 \uC810\uC790 \uD504\uB9B0\uD130\uBD80\uD130 \uC790\uC728 \uC218\uC0C1 \uC120\uBC15\uAE4C\uC9C0.",
+        "hero.affiliation": '\uC804\uC790\uACF5\uD559 \uC11D\uC0AC, \uAD6D\uBBFC\uB300\uD559\uAD50 &mdash; \uD604\uC7AC <a href="https://orinu.ai/" target="_blank" rel="noopener">orinu.ai</a>, \uC11C\uC6B8',
+        "hero.cta": "\uC5F0\uB77D\uD558\uAE30",
+        "hero.stat1": "\uB17C\uBB38",
+        "hero.stat2": "\uAD6D\uC81C \uC218\uC0C1",
+        "hero.stat3": "\uC815\uBD80 \uD504\uB85C\uC81D\uD2B8",
+        "hero.stat4": "\uC624\uD508\uC18C\uC2A4",
+        "about.tag": "\uC18C\uAC1C",
+        "about.title": "\uC5D4\uC9C0\uB2C8\uC5B4, \uC5F0\uAD6C\uC790<br>& \uBB38\uC81C \uD574\uACB0\uC0AC",
+        "about.p1": "LLM \uD30C\uC778\uD29C\uB2DD(T5, Gemma, LLaMA with LoRA, QLoRA, RAG)\uACFC ROS 2 \uBC0F NVIDIA Jetson \uD50C\uB7AB\uD3FC\uC744 \uD65C\uC6A9\uD55C \uC2E4\uC2DC\uAC04 \uB85C\uBCF4\uD2F1\uC2A4 \uC2DC\uC2A4\uD15C\uC5D0 \uC2E4\uBB34 \uACBD\uD5D8\uC744 \uAC00\uC9C4 AI \uAC1C\uBC1C\uC790 \uBC0F \uB85C\uBCF4\uD2F1\uC2A4 \uC5D4\uC9C0\uB2C8\uC5B4\uC785\uB2C8\uB2E4. IEEE Access \uBC0F MDPI Sensors\uC5D0 \uB17C\uBB38\uC744 \uBC1C\uD45C\uD558\uACE0, \uB2E4\uC591\uD55C \uC0B0\uC5C5 \uBD84\uC57C\uC5D0\uC11C \uC9C0\uB2A5\uD615 \uC2DC\uC2A4\uD15C\uC744 \uAD6C\uCD95\uD55C \uC2E4\uC801\uC774 \uC788\uC2B5\uB2C8\uB2E4.",
+        "about.p2": "\uC778\uB3C4\uB124\uC2DC\uC544 \uB300\uD559\uAD50 \uB85C\uBCF4\uD2F1\uC2A4\uD300\uC758 \uC790\uC728 \uC218\uC0C1 \uC120\uBC15\uBD80\uD130 XL Axiata\uC758 5G \uB4DC\uB860, \uAD6D\uBBFC\uB300\uD559\uAD50\uC758 \uAD11\uD559 \uCE74\uBA54\uB77C \uD1B5\uC2E0 \uC5F0\uAD6C\uBD80\uD130 orinu.ai\uC758 \uC2A4\uB9C8\uD2B8 \uC810\uC790 \uD504\uB9B0\uD130\uAE4C\uC9C0 \u2014 AI\uC640 \uB85C\uBCF4\uD2F1\uC2A4\uB97C \uC5F0\uACB0\uD558\uC5EC \uC2E4\uC81C \uBB38\uC81C\uB97C \uD574\uACB0\uD569\uB2C8\uB2E4.",
+        "about.card1.title": "\uC804\uC790\uACF5\uD559 \uC11D\uC0AC, \uAD6D\uBBFC\uB300\uD559\uAD50",
+        "about.card1.desc": "\uC11C\uC6B8, \uB300\uD55C\uBBFC\uAD6D (2022 \u2013 2024)",
+        "about.card2.title": "\uCEF4\uD4E8\uD130\uACF5\uD559 \uD559\uC0AC",
+        "about.card2.desc": "\uC778\uB3C4\uB124\uC2DC\uC544 \uB300\uD559\uAD50 (2018 \u2013 2022)",
+        "about.card3.title": "\uD53C\uC9C0\uCEEC AI \uC5D4\uC9C0\uB2C8\uC5B4",
+        "about.card3.desc": '<a href="https://orinu.ai/" target="_blank" rel="noopener" style="color: var(--accent);">orinu.ai</a> \u2014 \uD654\uC131, \uB300\uD55C\uBBFC\uAD6D',
+        "about.card4.title": "\uC11C\uC6B8 \uAC70\uC8FC",
+        "about.card4.desc": "\uAE00\uB85C\uBC8C \uAE30\uD68C \uC5F4\uB9BC",
+        "expertise.tag": "\uC804\uBB38\uBD84\uC57C",
+        "expertise.title": "\uD575\uC2EC \uC5ED\uB7C9",
+        "expertise.desc": "\uB85C\uBCF4\uD2F1\uC2A4, \uC5E3\uC9C0 \uCEF4\uD4E8\uD305, \uD1B5\uC2E0, \uC9C0\uB2A5\uD615 \uC2DC\uC2A4\uD15C \uC804\uBC18\uC5D0 \uAC78\uCE5C AI \uC5F0\uAD6C\uC640 \uC5D4\uC9C0\uB2C8\uC5B4\uB9C1\uC758 \uC5F0\uACB0.",
+        "expertise.c1.title": "LLM & \uC0DD\uC131\uD615 AI",
+        "expertise.c1.desc": "\uB300\uADDC\uBAA8 \uC5B8\uC5B4 \uBAA8\uB378(T5, Gemma, LLaMA) LoRA, QLoRA, RAG \uD30C\uC774\uD504\uB77C\uC778\uC73C\uB85C \uD30C\uC778\uD29C\uB2DD. \uBC88\uC5ED \uC5D4\uC9C4 \uBC0F \uB300\uD654\uD615 AI \uD504\uB85C\uB355\uC158 \uBC30\uD3EC.",
+        "expertise.c2.title": "\uB85C\uBCF4\uD2F1\uC2A4 & ROS 2",
+        "expertise.c2.desc": "Jetson \uD50C\uB7AB\uD3FC \uAE30\uBC18 \uC2E4\uC2DC\uAC04 \uB85C\uBCF4\uD2F1\uC2A4 \uC2DC\uC2A4\uD15C. \uB85C\uBCF4\uD2F1 \uC554, \uC790\uC728 \uC218\uC0C1 \uC120\uBC15(USV/AUV), \uCEF4\uD4E8\uD130 \uBE44\uC804 \uD1B5\uD569 \uB4DC\uB860 \uC2DC\uC2A4\uD15C.",
+        "expertise.c3.title": "\uC5E3\uC9C0 AI & \uBC30\uD3EC",
+        "expertise.c3.desc": "NVIDIA Jetson\uC5D0 8\uAC1C \uC774\uC0C1\uC758 \uD504\uB85C\uB355\uC158 Edge AI \uC2DC\uC2A4\uD15C. TensorRT INT8/FP16 \uCD5C\uC801\uD654\uB85C 67% \uBAA8\uB378 \uC555\uCD95 \uB2EC\uC131. \uD480\uC2A4\uD0DD: FastAPI + React + WebSocket \uC2A4\uD2B8\uB9AC\uBC0D.",
+        "expertise.c4.title": "\uB525\uB7EC\uB2DD",
+        "expertise.c4.desc": "\uC2E0\uD638 \uCC98\uB9AC, \uC774\uBBF8\uC9C0 \uC778\uC2DD, \uC2DC\uACC4\uC5F4 \uC608\uCE21\uC744 \uC704\uD55C CNN, LSTM, GCN \uBC0F \uD558\uC774\uBE0C\uB9AC\uB4DC \uC544\uD0A4\uD14D\uCC98. \uD0DC\uC591\uAD11 \uC5D0\uB108\uC9C0 \uC608\uCE21 \uBC0F OCC \uC2DC\uC2A4\uD15C \uC5F0\uAD6C \uBC1C\uD45C.",
+        "expertise.c5.title": "\uAD11\uD559 \uCE74\uBA54\uB77C \uD1B5\uC2E0",
+        "expertise.c5.desc": "2D MIMO OCC \uC2DC\uC2A4\uD15C, OCC\uC6A9 CSMA/CA MAC \uD504\uB85C\uD1A0\uCF5C \uC124\uACC4, \uCD08\uACE0\uC18D OCC \uBC0F \uC815\uBC00 \uC704\uCE58 \uCD94\uC815. IEEE Access \uBC1C\uD45C.",
+        "expertise.c6.title": "IoT & \uC5D0\uB108\uC9C0 \uC2DC\uC2A4\uD15C",
+        "expertise.c6.desc": "\uC9C0\uB2A5\uD615 IoE \uD50C\uB7AB\uD3FC, LoRa \uBA54\uC2DC \uB124\uD2B8\uC6CC\uD06C \uC13C\uC11C \uD1B5\uD569, GCN-BiLSTM \uBAA8\uB378 \uAE30\uBC18 \uD0DC\uC591\uAD11 \uC5D0\uB108\uC9C0 \uC608\uCE21, VPP ESS \uD50C\uB7AB\uD3FC \uBC0F V2X \uD1B5\uC2E0.",
+        "pub.tag": "\uB17C\uBB38",
+        "pub.title": "\uC5F0\uAD6C \uB17C\uBB38",
+        "pub.desc": "\uAD6D\uC81C \uC800\uB110, \uD559\uD68C \uBC0F \uAE30\uC220 \uB300\uD68C\uC758 \uD53C\uC5B4 \uB9AC\uBDF0 \uB17C\uBB38.",
+        "proj.tag": "\uD3EC\uD2B8\uD3F4\uB9AC\uC624",
+        "proj.title": "\uD504\uB85C\uC81D\uD2B8 & \uC624\uD508\uC18C\uC2A4",
+        "proj.desc": "AI/ML \uC5F0\uAD6C, Jetson Edge AI \uBC30\uD3EC, IoT \uC2DC\uC2A4\uD15C \uBC0F \uD480\uC2A4\uD0DD \uC560\uD50C\uB9AC\uCF00\uC774\uC158.",
+        "proj.github": "GitHub\uC5D0\uC11C \uBCF4\uAE30",
+        "proj.cat1": "AI & \uB525\uB7EC\uB2DD \uC5F0\uAD6C",
+        "proj.cat1_count": "2\uAC1C \uD504\uB85C\uC81D\uD2B8",
+        "proj.cat2": "NVIDIA Jetson Edge AI",
+        "proj.cat2_count": "8\uAC1C \uD504\uB85C\uC81D\uD2B8",
+        "proj.cat3": "IoT & \uBCF4\uC548 \uC2DC\uC2A4\uD15C",
+        "proj.cat3_count": "2\uAC1C \uD504\uB85C\uC81D\uD2B8",
+        "proj.cat4": "\uC6F9 \uC560\uD50C\uB9AC\uCF00\uC774\uC158",
+        "proj.cat4_count": "4\uAC1C \uD504\uB85C\uC81D\uD2B8",
+        "proj.pv.title": "PV \uD0DC\uC591\uAD11 \uBC1C\uC804\uB7C9 \uC608\uCE21 API",
+        "proj.pv.desc": "\uD55C\uAD6D 10\uAC1C \uD0DC\uC591\uAD11 \uBC1C\uC804\uC18C\uC758 \uC775\uC77C \uBC1C\uC804\uB7C9 \uC608\uCE21. \uAE30\uC0C1\uCCAD \uAE30\uC0C1 \uB370\uC774\uD130\uB85C \uD559\uC2B5\uB41C 6\uAC1C \uB525\uB7EC\uB2DD \uC544\uD0A4\uD14D\uCC98\uC758 Flask REST API.",
+        "proj.pv.detail": '<strong>\uBAA8\uB378:</strong> BiLSTM, Stacked BiLSTM, LSTM, ConvLSTM, RNN \u2014 12\uAC1C \uAE30\uC0C1 \uD53C\uCC98(\uD1A0\uC591\uC628\uB3C4, \uC77C\uC0AC\uB7C9, \uC6B4\uB7C9 \uB4F1)\uB85C 24\uC2DC\uAC04 \uC2AC\uB77C\uC774\uB529 \uC708\uB3C4\uC6B0 \uD559\uC2B5, 24\uC2DC\uAC04 \uC608\uCE21 \uC0DD\uC131. MinMax \uC815\uADDC\uD654, tanh \uD65C\uC131\uD568\uC218.<br><br><strong>\uACB0\uACFC:</strong> BiLSTM \uBCC0\uD615\uC774 \uCD5C\uC800 \uC608\uCE21 \uC624\uCC28 \uB2EC\uC131. \uB9E4\uC77C 10:00, 16:00 KST \uC790\uB3D9 \uC608\uCE21. Sensors 2023 (MDPI) \uBC0F ICUFN 2023 \uBC1C\uD45C.',
+        "proj.pv.m1": "\uD0DC\uC591\uAD11 \uC0AC\uC774\uD2B8",
+        "proj.pv.m2": "DL \uBAA8\uB378",
+        "proj.pv.m3": "\uD53C\uCC98",
+        "proj.energy.title": "\uC2A4\uB9C8\uD2B8\uD648 \uC5D0\uB108\uC9C0 \uC18C\uBE44 \uC608\uCE21",
+        "proj.energy.desc": "\uBE44\uAD50 \uC5F0\uAD6C: ARIMA/SARIMA/SARIMAX vs LSTM/BiLSTM/GRU/RNN, 503,910\uAC1C \uC2A4\uB9C8\uD2B8 \uBBF8\uD130 \uB808\uCF54\uB4DC \uBC0F \uAE30\uC0C1 \uD53C\uCC98.",
+        "proj.energy.detail": '<strong>\uD575\uC2EC \uBC1C\uACAC:</strong> LSTM \uB2E4\uBCC0\uB7C9\uC774 MSE=0.022, MAE=0.110 \uB2EC\uC131 \u2014 \uAE30\uC874 \uBC29\uBC95\uC744 \uD06C\uAC8C \uC0C1\uD68C. \uD55C\uAD6D 17\uAC1C \uC9C0\uC5ED\uC73C\uB85C \uD655\uC7A5, \uBD80\uC0B0 \uB370\uC774\uD130\uC5D0\uC11C BiLSTM R\u00B2=0.9549 \uB2EC\uC131.',
+        "proj.langgraph.title": "LangGraph \uCC57\uBD07 \uD50C\uB808\uC774\uADF8\uB77C\uC6B4\uB4DC",
+        "proj.langgraph.desc": "LangGraph\uB97C \uD65C\uC6A9\uD55C \uC2E4\uD5D8\uC801 \uB300\uD654\uD615 AI \u2014 \uC0C1\uD0DC \uAE30\uBC18 \uBA40\uD2F4 \uB300\uD654, \uC5D0\uC774\uC804\uD2B8 \uC6CC\uD06C\uD50C\uB85C\uC6B0, OpenAI/Anthropic/OpenRouter API \uAE30\uBC18 LLM \uC624\uCF00\uC2A4\uD2B8\uB808\uC774\uC158.",
+        "proj.deploy.title": "Edge AI \uBC30\uD3EC \uD50C\uB7AB\uD3FC",
+        "proj.deploy.desc": "8\uAC1C Edge AI \uD504\uB85C\uC81D\uD2B8\uC758 \uC911\uC559 \uBC30\uD3EC \uD5C8\uBE0C. TensorRT INT8/FP16 \uBAA8\uB378 \uC555\uCD95\uC73C\uB85C \uCD1D 67% \uD06C\uAE30 \uAC10\uC18C(482MB\u21921\u200B52MB). \uBAA8\uB4E0 \uC555\uCD95 \uBAA8\uB378, \uCD94\uB860 \uC2A4\uD06C\uB9BD\uD2B8, SCP/USB \uC804\uC1A1 \uC720\uD2F8\uB9AC\uD2F0 \uBC0F TensorRT \uCD94\uB860 \uC5D4\uC9C4, \uBE44\uB3D9\uAE30 \uBE44\uB514\uC624 \uCEA1\uCC98, WebSocket \uC2A4\uD2B8\uB9AC\uBC0D, Docker \uBCA0\uC774\uC2A4 \uC774\uBBF8\uC9C0 \uD3EC\uD568 \uACF5\uC720 Python \uB77C\uC774\uBE0C\uB7EC\uB9AC.",
+        "proj.deploy.m1": "\uC555\uCD95\uB960",
+        "proj.deploy.m2": "\uCD1D \uC6A9\uB7C9",
+        "proj.deploy.m3": "AI \uD504\uB85C\uC81D\uD2B8",
+        "proj.objdet.title": "\uAC1D\uCCB4 \uAC80\uCD9C",
+        "proj.objdet.desc": "\uC2E4\uC2DC\uAC04 80\uD074\uB798\uC2A4 COCO \uAC80\uCD9C. \uD480\uC2A4\uD0DD: FastAPI \uBC31\uC5D4\uB4DC, React/TypeScript \uD504\uB860\uD2B8\uC5D4\uB4DC, WebSocket \uC2A4\uD2B8\uB9AC\uBC0D. Jetson Nano\uC5D0\uC11C TensorRT FP16 416x416 20-25 FPS.",
+        "proj.attend.title": "\uC5BC\uAD74\uC778\uC2DD \uCD9C\uC11D \uC2DC\uC2A4\uD15C",
+        "proj.attend.desc": "InsightFace buffalo_s + RetinaFace + ArcFace \uC778\uC2DD + MiniFASNet \uC704\uC870\uBC29\uC9C0. \uB2E4\uAC01\uB3C4 \uB4F1\uB85D(5\uAC1C \uAC01\uB3C4). PostgreSQL \uD480\uC2A4\uD0DD. INT8 \uC555\uCD95: 158MB\u219240MB. 15-20 FPS.",
+        "proj.ppe.title": "PPE(\uBCF4\uD638\uAD6C) \uAC10\uC9C0",
+        "proj.ppe.desc": "\uB2E4\uC911 PPE \uAC10\uC9C0(\uC548\uC804\uBAA8, \uC870\uB07C, \uC548\uACBD, \uC7A5\uAC11, \uB9C8\uC2A4\uD06C) \uBC0F \uAC74\uC124/\uC81C\uC870/\uD654\uD559 \uAD6C\uC5ED\uBCC4 \uC900\uC218 \uD655\uC778. YOLOv8n + TensorRT INT8 (3.4MB \uBAA8\uB378).",
+        "proj.alpr.title": "\uBC88\uD638\uD310 \uC778\uC2DD",
+        "proj.alpr.desc": "YOLOv8 \uBC88\uD638\uD310 \uAC80\uCD9C + EasyOCR/PaddleOCR. SORT \uCC28\uB7C9 \uCD94\uC801. \uC778\uB3C4\uB124\uC2DC\uC544 \uBC88\uD638\uD310 \uD615\uC2DD \uAC80\uC99D. \uAC10\uC2DC \uBAA9\uB85D \uBAA8\uB2C8\uD130\uB9C1 \uBC0F \uC54C\uB9BC. PostgreSQL + React \uD480\uC2A4\uD0DD.",
+        "proj.security.title": "\uBCF4\uC548 \uBD84\uC11D",
+        "proj.security.desc": "\uBAA8\uC158 \uAC10\uC9C0(MOG2/KNN), \uD3F4\uB9AC\uACE4 \uAD6C\uC5ED \uAE30\uBC18 \uCE68\uC785 \uAC10\uC9C0, \uC2DC\uAC04 \uCD94\uC801 \uAE30\uBC18 \uBC30\uD68C \uAC10\uC9C0. YOLOv8n \uC0AC\uB78C \uAC80\uCD9C + DeepSort \uCD94\uC801. INT8/FP16 \uC555\uCD95.",
+        "proj.analytics.title": "\uC778\uC6D0 \uBD84\uC11D",
+        "proj.analytics.desc": "\uB77C\uC778 \uD06C\uB85C\uC2F1 \uCE74\uC6B4\uD130, \uAD6C\uC5ED \uC810\uC720\uC728 \uBAA8\uB2C8\uD130\uB9C1, \uAD50\uD1B5 \uD750\uB984 \uBD84\uC11D. ML \uBAA8\uB378 \uC5C6\uC744 \uC2DC HOG \uD3B4\uBC31. JSON \uD1B5\uACC4 \uCD9C\uB825. Jetson TensorRT 25-30 FPS.",
+        "proj.gesture.title": "\uC190 \uC81C\uC2A4\uCC98 \uC778\uC2DD",
+        "proj.gesture.desc": "MediaPipe 21\uAC1C \uB79C\uB4DC\uB9C8\uD06C \uC190 \uCD94\uC801, 9\uAC1C \uC81C\uC2A4\uCC98 \uD074\uB798\uC2A4(FIST, OPEN_PALM, THUMBS_UP \uB4F1). \uCEE4\uC2A4\uD140 ML \uBD84\uB958\uAE30 \uD559\uC2B5 \uD30C\uC774\uD504\uB77C\uC778. \uCFE8\uB2E4\uC6B4 \uC561\uC158 \uB9E4\uD551. Jetson 15-20 FPS.",
+        "proj.fitness.title": "\uC6B4\uB3D9 \uD2B8\uB798\uCEE4",
+        "proj.fitness.desc": "MediaPipe/YOLOv8-pose/MoveNet\uC744 \uD65C\uC6A9\uD55C \uD478\uC26C\uC5C5, \uC2A4\uCFFC\uD2B8, \uD50C\uB791\uD06C \uCD94\uC801. \uAD00\uC808 \uAC01\uB3C4 \uACC4\uC0B0\uC73C\uB85C \uD69F\uC218 \uCE74\uC6B4\uD305. \uC2E4\uC2DC\uAC04 \uC790\uC138 \uBD84\uC11D \uBC0F \uAD50\uC815 \uD53C\uB4DC\uBC31.",
+        "proj.server.title": "\uC11C\uBC84\uC2E4 \uBAA8\uB2C8\uD130\uB9C1",
+        "proj.server.desc": "\uB2E4\uC911 \uC13C\uC11C IoT \uC2DC\uC2A4\uD15C: DHT22, \uBBF8\uC138\uBA3C\uC9C0(PM2.5/PM10), \uC9C4\uB3D9, \uC74C\uD5A5 \uC13C\uC11C \uD0D1\uC7AC Arduino \uB178\uB4DC. LoRa \uBB34\uC120 \uBA54\uC2DC\uB85C \uC911\uC559 \uC218\uC2E0\uAE30\uC5D0 \uC804\uC1A1. MariaDB \uB85C\uAE45 \uBC0F Telegram \uBD07 \uC774\uC0C1 \uC54C\uB9BC.",
+        "proj.intruder.title": "\uCE68\uC785\uC790 \uAC10\uC9C0",
+        "proj.intruder.desc": "OpenCV DNN(Caffe SSD \uBAA8\uB378) \uAE30\uBC18 \uC2E4\uC2DC\uAC04 \uC5BC\uAD74 \uAC10\uC9C0 \uBC0F Telegram \uC790\uB3D9 \uC0AC\uC9C4 \uC54C\uB9BC. \uC2E0\uB8B0\uB3C4 \uC784\uACC4\uAC12 \uBC0F \uD504\uB808\uC784 \uC2A4\uD0B5\uB960 \uC124\uC815 \uAC00\uB2A5. \uBE44\uB3D9\uAE30 \uC54C\uB9BC \uC804\uC1A1.",
+        "proj.vtt.title": "VTT \u2014 \uC74C\uC131-\uD14D\uC2A4\uD2B8 \uBCC0\uD658",
+        "proj.vtt.desc": "Google Cloud Speech-to-Text API \uAE30\uBC18 \uC778\uB3C4\uB124\uC2DC\uC544\uC5B4 \uC74C\uC131 \uC778\uC2DD. FFmpeg\uC744 \uD1B5\uD55C FLAC \uC624\uB514\uC624 \uCC98\uB9AC. \uBC14\uD558\uC0AC \uC778\uB3C4\uB124\uC2DC\uC544(id-ID) \uCD5C\uC801\uD654 \uBE44\uB3D9\uAE30 \uC7A5\uC2DC\uAC04 \uC778\uC2DD. Google Cloud Storage \uC624\uB514\uC624 \uD30C\uC77C \uC800\uC7A5.",
+        "proj.tweet.title": "TweetBullyingDetector",
+        "proj.tweet.desc": "Twitter/X \uC0AC\uC774\uBC84\uBD88\uB9C1 \uAC10\uC9C0 \uBC0F \uC2E0\uACE0 \uD50C\uB7AB\uD3FC. Twitter API v1.1 \uD0A4\uC6CC\uB4DC \uAE30\uBC18 \uD2B8\uC717 \uAC80\uC0C9, \uCEE4\uBBA4\uB2C8\uD2F0 \uC2E0\uACE0 \uC2DC\uC2A4\uD15C, \uC0AC\uC774\uBC84\uBD88\uB9C1 \uC778\uC2DD \uAD50\uC721 \uC790\uB8CC.",
+        "proj.vetracker.title": "VeTracker \u2014 \uCC28\uB7C9 \uAD00\uB9AC",
+        "proj.vetracker.desc": "CRUD \uC791\uC5C5, \uC774\uBBF8\uC9C0 \uC5C5\uB85C\uB4DC, Jetstream 2FA \uC778\uC99D\uC758 \uB2E4\uC911 \uC0AC\uC6A9\uC790 \uD300 \uC9C0\uC6D0 \uCC28\uB7C9 \uC7AC\uACE0 \uAD00\uB9AC. Livewire \uCEF4\uD3EC\uB10C\uD2B8 \uBC18\uC751\uD615 UI.",
+        "proj.brocket.title": "Brocket \u2014 \uB300\uC9C4\uD45C \uAD00\uB9AC",
+        "proj.brocket.desc": "\uC790\uB3D9 \uC0DD\uC131 \uB79C\uB364 \uB300\uC9C4\uD45C, \uC2DC\uC0C1\uB300/\uBA54\uB2EC \uCD94\uC801, \uACF5\uAC1C \uB300\uC9C4\uD45C \uACF5\uC720, \uC774\uBA54\uC77C \uC54C\uB9BC\uC758 \uD1A0\uB108\uBA3C\uD2B8 \uAD00\uB9AC. Jetstream 2FA \uC778\uC99D. \uD300 \uD504\uB85C\uC81D\uD2B8(7\uBA85).",
+        "awards.tag": "\uC218\uC0C1",
+        "awards.title": "\uC218\uC0C1 & \uB300\uD68C",
+        "awards.desc": "\uC778\uB3C4\uB124\uC2DC\uC544\uB97C \uB300\uD45C\uD558\uC5EC \uAD6D\uC81C \uBC0F \uAD6D\uB0B4 \uB85C\uBCF4\uD2F1\uC2A4 \uB300\uD68C\uC5D0\uC11C \uC218\uC0C1.",
+        "awards.a1.place": "1\uC704",
+        "awards.a1.desc": "\uAD6D\uC81C \uC218\uC911 \uB85C\uBCF4\uD2F1\uC2A4 \uB300\uD68C",
+        "awards.a2.place": "3\uC704",
+        "awards.a3.place": "3\uC704 \u2014 \uC13C\uC11C \uCD5C\uC801\uD654",
+        "awards.a4.place": "3\uC704",
+        "awards.a4.desc": "\uC804\uAD6D \uBB34\uC778 \uACE0\uC18D\uC815 \uB300\uD68C, \uC778\uB3C4\uB124\uC2DC\uC544",
+        "awards.a5.place": "\uCD5C\uC6B0\uC218 \uD3EC\uC2A4\uD130",
+        "awards.a5.desc": "\uC804\uAD6D \uBB34\uC778 \uACE0\uC18D\uC815 \uB300\uD68C, \uC778\uB3C4\uB124\uC2DC\uC544",
+        "research.tag": "\uC5F0\uAD6C",
+        "research.title": "\uC815\uBD80 \uC9C0\uC6D0 \uD504\uB85C\uC81D\uD2B8",
+        "research.desc": "\uD55C\uAD6D \uC815\uBD80 \uBD80\uCC98\uAC00 \uC9C0\uC6D0\uD558\uB294 \uAD6D\uBBFC\uB300\uD559\uAD50 \uC8FC\uC694 \uAD6D\uCC45 \uC5F0\uAD6C \uD504\uB85C\uC81D\uD2B8 \uCC38\uC5EC.",
+        "research.r1": "\uC7AC\uC0DD\uC5D0\uB108\uC9C0 \uADF8\uB9AC\uB4DC \uC548\uC815\uD654",
+        "research.r2": "5G \uB2E4\uC911\uB300\uC5ED \uC0B0\uC5C5\uC6A9 \uC2A4\uBAB0\uC140 \uAC1C\uBC1C",
+        "research.r3": "\uC9C0\uB2A5\uD615 IoE \uB370\uC774\uD130 \uC5F0\uAD6C \uD50C\uB7AB\uD3FC",
+        "research.r4": "V2X \uC591\uC790 AI \uD2B8\uB9AC\uD50C \uC13C\uC11C OCC \uC2DC\uC2A4\uD15C",
+        "research.r5": "VPP ESS \uC11C\uBE44\uC2A4 \uD50C\uB7AB\uD3FC \uAC1C\uBC1C",
+        "research.r6": "\uCD08\uACE0\uC18D OCC \uBC0F \uC815\uBC00 \uC704\uCE58 \uCD94\uC815",
+        "exp.tag": "\uACBD\uB825",
+        "exp.title": "\uC804\uBB38 \uACBD\uB825",
+        "exp.e1.date": "2025\uB144 10\uC6D4 \u2014 \uD604\uC7AC",
+        "exp.e1.role": "\uD53C\uC9C0\uCEEC AI \uC5D4\uC9C0\uB2C8\uC5B4",
+        "exp.e1.l1": "\uBC88\uC5ED \uBC0F RAG(Retrieval-Augmented Generation) \uD504\uB85C\uC81D\uD2B8\uB97C \uC704\uD55C LLM \uD30C\uC778\uD29C\uB2DD",
+        "exp.e1.l2": "\uB85C\uBCF4\uD2F1\uC2A4 \uC2DC\uC2A4\uD15C\uC744 \uD65C\uC6A9\uD55C \uC2A4\uB9C8\uD2B8 \uC810\uC790 \uD504\uB9B0\uD130 \uAC1C\uBC1C",
+        "exp.e1.l3": "Jetson \uD50C\uB7AB\uD3FC\uC5D0\uC11C ROS 2 \uAE30\uBC18 \uB85C\uBCF4\uD2F1 \uC554 \uAC1C\uBC1C",
+        "exp.e2.role": "AI & IoT \uC5F0\uAD6C\uC6D0",
+        "exp.e2.l1": "\uC545\uC870\uAC74 \uD658\uACBD\uC5D0\uC11C\uC758 LED \uAC10\uC9C0 \uBC0F \uCD94\uC801 \uC2DC\uC2A4\uD15C \uAC1C\uBC1C",
+        "exp.e2.l2": "\uAE30\uC0C1 \uB370\uC774\uD130 \uAE30\uBC18 PV \uBC1C\uC804\uB7C9 \uC608\uCE21\uC744 \uC704\uD55C \uC2DC\uACC4\uC5F4 \uC608\uCE21 \uBAA8\uB378 \uAD6C\uCD95",
+        "exp.e2.l3": "2\uB144 \uB0B4 \uAD6D\uC81C \uC800\uB110 2\uD3B8, \uD559\uD68C \uB17C\uBB38 2\uD3B8 \uBC1C\uD45C",
+        "exp.e2.l4": "8\uAC1C \uC815\uBD80 \uC9C0\uC6D0 \uC5F0\uAD6C \uD504\uB85C\uC81D\uD2B8 \uCC38\uC5EC (MOTIE, MSIT, MSS)",
+        "exp.e3.role": "IoT \uC778\uD134",
+        "exp.e3.l1": "5G \uC5F0\uACB0 \uB4DC\uB860 \uD504\uB85C\uC81D\uD2B8 \uAC1C\uBC1C",
+        "exp.e3.l2": "\uB4DC\uB860\uC5D0 \uCEF4\uD4E8\uD130 \uBE44\uC804 \uAD6C\uD604, 100% \uC131\uACF5\uB960 \uB2EC\uC131",
+        "exp.e4.role": "IT \uBE44\uC988\uB2C8\uC2A4 \uBD84\uC11D\uAC00",
+        "exp.e4.l1": "\uC2A4\uD0C0\uD2B8\uC5C5 \uBC0F \uACF5\uAE30\uC5C5 \uB300\uC0C1 CRM \uC194\uB8E8\uC158 \uBD84\uC11D \uBC0F \uAC1C\uBC1C",
+        "exp.e4.l2": "GCP \uAE30\uBC18 \uD488\uC9C8\uBCF4\uC99D\uC6A9 NLP \uC624\uB514\uC624 \uD2B8\uB79C\uC2A4\uD06C\uB77C\uC774\uBC84 \uD504\uB85C\uC81D\uD2B8 \uB9AC\uB4DC",
+        "exp.e5.role": "\uD504\uB85C\uADF8\uB798\uBA38 \uBD80\uC7A5 / AI \uC5D4\uC9C0\uB2C8\uC5B4",
+        "exp.e5.org": "AMV UI & \uB85C\uBCF4\uD2F1\uC2A4\uD300 \u2014 \uC778\uB3C4\uB124\uC2DC\uC544 \uB300\uD559\uAD50",
+        "exp.e5.l1": "USV \uBC0F AUV \uB85C\uBCF4\uD2B8\uC758 \uC790\uC728 \uC81C\uC5B4 \uC54C\uACE0\uB9AC\uC998 \uAC1C\uBC1C AI \uBD80\uC11C 6\uBA85 \uAD00\uB9AC",
+        "exp.e5.l2": "\uAD6D\uC81C \uB300\uD68C \uCC38\uAC00: AUVSI Roboboat(\uBBF8\uAD6D), ASEAN MATE ROV, KKCTBN",
+        "exp.e5.l3": "ROS, Arduino, \uCEF4\uD4E8\uD130 \uBE44\uC804\uC744 \uD65C\uC6A9\uD55C \uC790\uB3D9\uD654 \uBC0F \uC81C\uC5B4 \uC2DC\uC2A4\uD15C \uAD6C\uCD95",
+        "edu.tag": "\uD559\uB825",
+        "edu.title": "\uD559\uC220 \uBC30\uACBD",
+        "edu.e1.degree": "\uC11D\uC0AC \uD559\uC704",
+        "edu.e1.field": "\uC804\uAE30\uC804\uC790\uACF5\uD559",
+        "edu.e2.degree": "\uD559\uC0AC \uD559\uC704",
+        "edu.e2.school": "\uC778\uB3C4\uB124\uC2DC\uC544 \uB300\uD559\uAD50",
+        "edu.e2.field": "\uCEF4\uD4E8\uD130\uACF5\uD559 \u00B7 GPA 3.43",
+        "skills.tag": "\uAE30\uC220 \uC2A4\uD0DD",
+        "skills.title": "\uAE30\uC220 \uB3C4\uAD6C",
+        "skills.desc": "\uC5D4\uC9C0\uB2C8\uC5B4\uB9C1, \uC5F0\uAD6C, \uAC1C\uBC1C \uC804\uBC18\uC758 \uAE30\uC220\uACFC \uB3C4\uAD6C.",
+        "skills.g1": "\uD504\uB85C\uADF8\uB798\uBC0D \uC5B8\uC5B4",
+        "skills.g2": "AI & \uBA38\uC2E0\uB7EC\uB2DD",
+        "skills.g3": "\uB85C\uBCF4\uD2F1\uC2A4 & \uD558\uB4DC\uC6E8\uC5B4",
+        "skills.g4": "\uB3C4\uAD6C & \uD50C\uB7AB\uD3FC",
+        "contact.tag": "\uC5F0\uB77D\uCC98",
+        "contact.title": "\uD568\uAED8 \uB9CC\uB4E4\uC5B4 \uBD05\uC2DC\uB2E4.",
+        "contact.subtitle": "AI/\uB85C\uBCF4\uD2F1\uC2A4 \uC5D4\uC9C0\uB2C8\uC5B4\uB9C1, \uC5F0\uAD6C \uD611\uC5C5, \uCEE8\uC124\uD305 \uD504\uB85C\uC81D\uD2B8 \uAC00\uB2A5\uD569\uB2C8\uB2E4. \uD604\uC7AC \uB300\uD55C\uBBFC\uAD6D \uC11C\uC6B8 \uAC70\uC8FC.",
+    },
+
+    id: {
+        "nav.about": "Tentang",
+        "nav.expertise": "Keahlian",
+        "nav.papers": "Publikasi",
+        "nav.projects": "Proyek",
+        "nav.career": "Karir",
+        "nav.contact": "Kontak",
+        "hero.tag": "Physical AI Engineer",
+        "hero.name": 'Muhammad Miftah <em>Faridh</em>',
+        "hero.subtitle": "Membangun sistem cerdas di persimpangan AI, robotika, dan edge computing. Dari fine-tuning LLM dan smart braille printer hingga kendaraan laut otonom.",
+        "hero.affiliation": 'M.S. Teknik Elektronika, Kookmin University &mdash; Saat ini di <a href="https://orinu.ai/" target="_blank" rel="noopener">orinu.ai</a>, Seoul',
+        "hero.cta": "Hubungi Saya",
+        "hero.stat1": "Publikasi",
+        "hero.stat2": "Penghargaan Int'l",
+        "hero.stat3": "Proyek Pemerintah",
+        "hero.stat4": "Open Source",
+        "about.tag": "Tentang",
+        "about.title": "Engineer, Peneliti<br>& Problem Solver",
+        "about.p1": "AI Developer dan Robotics Engineer dengan pengalaman langsung di LLM fine-tuning (T5, Gemma, LLaMA dengan LoRA, QLoRA, dan RAG) serta sistem robotik real-time menggunakan ROS 2 dan platform NVIDIA Jetson. Rekam jejak terbukti dalam penelitian terapan, publikasi paper di IEEE Access dan MDPI Sensors, serta membangun sistem cerdas di berbagai industri.",
+        "about.p2": "Dari kendaraan laut otonom di Tim Robotika Universitas Indonesia hingga drone terkoneksi 5G di XL Axiata, dari penelitian Optical Camera Communication di Kookmin University hingga Smart Braille Printer di orinu.ai \u2014 saya menjembatani AI dan robotika untuk memecahkan masalah dunia nyata.",
+        "about.card1.title": "M.S. EE, Kookmin University",
+        "about.card1.desc": "Seoul, Korea Selatan (2022 \u2013 2024)",
+        "about.card2.title": "S1 Teknik Komputer",
+        "about.card2.desc": "Universitas Indonesia (2018 \u2013 2022)",
+        "about.card3.title": "Physical AI Engineer",
+        "about.card3.desc": '<a href="https://orinu.ai/" target="_blank" rel="noopener" style="color: var(--accent);">orinu.ai</a> \u2014 Hwaseong, KR',
+        "about.card4.title": "Berbasis di Seoul",
+        "about.card4.desc": "Terbuka untuk peluang global",
+        "expertise.tag": "Keahlian",
+        "expertise.title": "Kompetensi Inti",
+        "expertise.desc": "Menjembatani riset AI dan engineering di bidang robotika, edge computing, komunikasi, dan sistem cerdas.",
+        "expertise.c1.title": "LLM & AI Generatif",
+        "expertise.c1.desc": "Fine-tuning model bahasa besar (T5, Gemma, LLaMA) dengan LoRA, QLoRA, dan pipeline RAG. Membangun mesin terjemahan dan AI percakapan untuk deployment produksi.",
+        "expertise.c2.title": "Robotika & ROS 2",
+        "expertise.c2.desc": "Sistem robotik real-time pada platform Jetson. Lengan robot, kendaraan laut otonom (USV/AUV), dan sistem drone dengan pipeline computer vision terintegrasi.",
+        "expertise.c3.title": "Edge AI & Deployment",
+        "expertise.c3.desc": "8+ sistem Edge AI produksi di NVIDIA Jetson. Optimasi TensorRT INT8/FP16 mencapai kompresi model 67%. Full-stack: FastAPI + React + WebSocket streaming.",
+        "expertise.c4.title": "Deep Learning",
+        "expertise.c4.desc": "Arsitektur CNN, LSTM, GCN, dan hybrid untuk pemrosesan sinyal, pengenalan gambar, dan peramalan deret waktu. Riset terpublikasi tentang prediksi energi surya dan sistem OCC.",
+        "expertise.c5.title": "Optical Camera Comm.",
+        "expertise.c5.desc": "Sistem 2D MIMO OCC, desain protokol MAC CSMA/CA untuk komunikasi optik, dan OCC ultra-high-rate dengan lokalisasi presisi. Dipublikasi di IEEE Access.",
+        "expertise.c6.title": "IoT & Sistem Energi",
+        "expertise.c6.desc": "Platform IoE cerdas, integrasi sensor dengan jaringan mesh LoRa, peramalan energi surya dengan model GCN-BiLSTM, platform VPP ESS, dan komunikasi V2X.",
+        "pub.tag": "Publikasi",
+        "pub.title": "Paper Penelitian",
+        "pub.desc": "Publikasi peer-reviewed di jurnal internasional, konferensi, dan kompetisi teknis.",
+        "proj.tag": "Portofolio",
+        "proj.title": "Proyek & Open Source",
+        "proj.desc": "Riset AI/ML, deployment Edge AI di Jetson, sistem IoT, dan aplikasi full-stack.",
+        "proj.github": "Lihat di GitHub",
+        "proj.cat1": "Riset AI & Deep Learning",
+        "proj.cat1_count": "2 proyek",
+        "proj.cat2": "Edge AI di NVIDIA Jetson",
+        "proj.cat2_count": "8 proyek",
+        "proj.cat3": "Sistem IoT & Keamanan",
+        "proj.cat3_count": "2 proyek",
+        "proj.cat4": "Aplikasi Web",
+        "proj.cat4_count": "4 proyek",
+        "proj.pv.title": "API Peramalan Daya PV Surya",
+        "proj.pv.desc": "Prediksi pembangkitan listrik tenaga surya hari berikutnya di 10 lokasi Korea Selatan. Flask REST API dengan 6 arsitektur deep learning yang dilatih dari data cuaca Badan Meteorologi Korea.",
+        "proj.pv.detail": '<strong>Model:</strong> BiLSTM, Stacked BiLSTM, LSTM, ConvLSTM, RNN \u2014 dilatih pada 12 fitur cuaca (suhu tanah, radiasi matahari, tutupan awan, dll.) dengan sliding window 24 jam menghasilkan prakiraan 24 jam. Normalisasi MinMax dengan aktivasi tanh.<br><br><strong>Hasil:</strong> Varian BiLSTM mencapai error prediksi terendah. Prediksi otomatis harian pukul 10:00 dan 16:00 KST. Dipublikasi di Sensors 2023 (MDPI) dan ICUFN 2023.',
+        "proj.pv.m1": "Lokasi surya",
+        "proj.pv.m2": "Model DL",
+        "proj.pv.m3": "Fitur",
+        "proj.energy.title": "Peramalan Energi Rumah Pintar",
+        "proj.energy.desc": "Studi komparatif: ARIMA/SARIMA/SARIMAX vs LSTM/BiLSTM/GRU/RNN pada 503.910 catatan smart meter dengan fitur cuaca.",
+        "proj.energy.detail": '<strong>Temuan utama:</strong> LSTM Multivariat mencapai MSE=0,022, MAE=0,110 \u2014 secara signifikan mengungguli metode klasik. Diperluas ke 17 wilayah Korea Selatan dengan BiLSTM mencapai R\u00B2=0,9549 pada data Busan.',
+        "proj.langgraph.title": "LangGraph Chatbot Playground",
+        "proj.langgraph.desc": "AI percakapan eksperimental dengan LangGraph \u2014 dialog multi-turn stateful, alur kerja agen, dan orkestrasi LLM menggunakan API OpenAI/Anthropic/OpenRouter.",
+        "proj.deploy.title": "Platform Deployment Edge AI",
+        "proj.deploy.desc": "Hub deployment pusat untuk 8 proyek edge AI. Kompresi model TensorRT INT8/FP16 mencapai pengurangan ukuran total 67% (482 MB menjadi 152 MB). Termasuk semua model terkompresi, skrip inferensi, utilitas transfer SCP/USB, dan library Python bersama dengan mesin inferensi TensorRT, capture video async, streaming WebSocket, dan image Docker dasar.",
+        "proj.deploy.m1": "Kompresi",
+        "proj.deploy.m2": "Total ukuran",
+        "proj.deploy.m3": "Proyek AI",
+        "proj.objdet.title": "Deteksi Objek",
+        "proj.objdet.desc": "Deteksi COCO 80 kelas real-time. Full stack: backend FastAPI, frontend React/TypeScript, streaming WebSocket. TensorRT FP16 target 20-25 FPS pada 416x416 di Jetson Nano.",
+        "proj.attend.title": "Absensi Pengenalan Wajah",
+        "proj.attend.desc": "InsightFace buffalo_s dengan RetinaFace + pengenalan ArcFace + anti-spoofing MiniFASNet. Pendaftaran multi-sudut (5 sudut). Full stack dengan PostgreSQL. INT8 terkompresi: 158 MB menjadi 40 MB. 15-20 FPS.",
+        "proj.ppe.title": "Deteksi APD",
+        "proj.ppe.desc": "Deteksi multi-APD (Helm, Rompi, Kacamata, Sarung Tangan, Masker) dengan kepatuhan berbasis zona untuk zona Konstruksi/Manufaktur/Kimia. YOLOv8n dengan TensorRT INT8 (model 3,4 MB).",
+        "proj.alpr.title": "Pengenalan Plat Nomor",
+        "proj.alpr.desc": "Deteksi plat YOLOv8 + EasyOCR/PaddleOCR. Pelacakan kendaraan SORT. Validasi format plat Indonesia. Pemantauan daftar pantau dengan peringatan. Full stack dengan PostgreSQL + React.",
+        "proj.security.title": "Analitik Keamanan",
+        "proj.security.desc": "Deteksi gerakan (MOG2/KNN), deteksi intrusi berbasis zona poligon, dan deteksi berkeliaran dengan pelacakan waktu. Deteksi orang YOLOv8n + pelacakan DeepSort. Terkompresi INT8/FP16.",
+        "proj.analytics.title": "Analitik Orang",
+        "proj.analytics.desc": "Penghitung penyeberangan garis, pemantauan okupansi zona, analisis arus lalu lintas. Fallback HOG saat model ML tidak tersedia. Output statistik JSON. 25-30 FPS dengan TensorRT di Jetson.",
+        "proj.gesture.title": "Pengenalan Gestur Tangan",
+        "proj.gesture.desc": "Pelacakan tangan MediaPipe 21-landmark dengan 9 kelas gestur (FIST, OPEN_PALM, THUMBS_UP, dll.). Pipeline pelatihan klasifier ML kustom. Pemetaan aksi dengan cooldown. 15-20 FPS di Jetson.",
+        "proj.fitness.title": "Pelacak Olahraga",
+        "proj.fitness.desc": "Pelacakan push-up, squat, plank menggunakan MediaPipe/YOLOv8-pose/MoveNet. Penghitungan repetisi melalui kalkulasi sudut sendi. Analisis bentuk real-time dengan umpan balik korektif.",
+        "proj.server.title": "Pemantauan Ruang Server",
+        "proj.server.desc": "Sistem IoT multi-sensor: node Arduino dengan sensor DHT22, debu (PM2.5/PM10), getaran, dan suara. Mesh nirkabel LoRa ke penerima pusat. Backend Python logging ke MariaDB dengan peringatan bot Telegram saat anomali.",
+        "proj.intruder.title": "Deteksi Penyusup",
+        "proj.intruder.desc": "Deteksi wajah real-time menggunakan OpenCV DNN (model Caffe SSD) dengan peringatan foto Telegram otomatis. Threshold kepercayaan dan tingkat skip frame dapat dikonfigurasi. Pengiriman notifikasi async non-blocking.",
+        "proj.vtt.title": "VTT \u2014 Voice-to-Text",
+        "proj.vtt.desc": "Speech-to-text Bahasa Indonesia menggunakan Google Cloud Speech-to-Text API. Pemrosesan audio FLAC melalui FFmpeg. Pengenalan jangka panjang async dioptimalkan untuk Bahasa Indonesia (id-ID). Google Cloud Storage untuk file audio.",
+        "proj.tweet.title": "TweetBullyingDetector",
+        "proj.tweet.desc": "Platform deteksi dan pelaporan cyberbullying untuk Twitter/X. Pencarian tweet berbasis kata kunci melalui Twitter API v1.1, sistem pelaporan komunitas, dan materi edukasi tentang kesadaran cyberbullying.",
+        "proj.vetracker.title": "VeTracker \u2014 Manajemen Kendaraan",
+        "proj.vetracker.desc": "Manajemen inventaris kendaraan dengan operasi CRUD, upload gambar, dan dukungan tim multi-pengguna dengan autentikasi Jetstream 2FA. UI reaktif dengan komponen Livewire.",
+        "proj.brocket.title": "Brocket \u2014 Manajer Bracket",
+        "proj.brocket.desc": "Manajemen turnamen dengan bracket acak otomatis, pelacakan podium/medali, berbagi bracket publik, dan notifikasi email. Auth Jetstream dengan 2FA. Proyek tim (7 anggota).",
+        "awards.tag": "Penghargaan",
+        "awards.title": "Penghargaan & Kompetisi",
+        "awards.desc": "Diakui dalam kompetisi robotika internasional dan nasional mewakili Indonesia.",
+        "awards.a1.place": "Juara 1",
+        "awards.a1.desc": "Kompetisi robotika bawah air internasional",
+        "awards.a2.place": "Juara 3",
+        "awards.a3.place": "Juara 3 \u2014 Optimasi Sensor",
+        "awards.a4.place": "Juara 3",
+        "awards.a4.desc": "Kontes Kapal Cepat Tak Berawak Nasional, Indonesia",
+        "awards.a5.place": "Poster Terbaik",
+        "awards.a5.desc": "Kontes Kapal Cepat Tak Berawak Nasional, Indonesia",
+        "research.tag": "Riset",
+        "research.title": "Proyek Dana Pemerintah",
+        "research.desc": "Berkontribusi pada proyek riset nasional utama di Kookmin University, didanai oleh kementerian pemerintah Korea.",
+        "research.r1": "Stabilisasi Grid Energi Terbarukan",
+        "research.r2": "Pengembangan Small Cell Industri 5G Multi-Band",
+        "research.r3": "Platform Riset Data IoE Cerdas",
+        "research.r4": "Sistem OCC Sensor Triple AI Kuantum V2X",
+        "research.r5": "Pengembangan Platform Layanan VPP ESS",
+        "research.r6": "OCC Ultra High Rate & Lokalisasi Presisi",
+        "exp.tag": "Karir",
+        "exp.title": "Perjalanan Profesional",
+        "exp.e1.date": "Okt 2025 \u2014 Sekarang",
+        "exp.e1.role": "Physical AI Engineer",
+        "exp.e1.l1": "Fine-tuning LLM untuk terjemahan & proyek Retrieval-Augmented Generation (RAG)",
+        "exp.e1.l2": "Pengembangan Smart Braille Printer menggunakan sistem robotik",
+        "exp.e1.l3": "Pengembangan lengan robot dengan ROS 2 pada platform Jetson",
+        "exp.e2.role": "Peneliti AI & IoT",
+        "exp.e2.l1": "Merancang sistem deteksi dan pelacakan LED untuk kondisi cuaca buruk",
+        "exp.e2.l2": "Membangun model peramalan deret waktu untuk memprediksi pembangkitan listrik PV menggunakan data cuaca",
+        "exp.e2.l3": "Mempublikasikan 2 jurnal internasional dan 2 paper konferensi dalam 2 tahun",
+        "exp.e2.l4": "Berkontribusi pada 8 proyek riset dana pemerintah (MOTIE, MSIT, MSS)",
+        "exp.e3.role": "Magang Internet of Things",
+        "exp.e3.l1": "Pengembangan proyek drone dengan konektivitas 5G",
+        "exp.e3.l2": "Implementasi computer vision pada drone dengan tingkat keberhasilan 100%",
+        "exp.e4.role": "IT Business Analyst",
+        "exp.e4.l1": "Menganalisis dan mengembangkan solusi CRM untuk startup dan perusahaan BUMN",
+        "exp.e4.l2": "Memimpin proyek Audio Transcriber berbasis NLP untuk quality assurance menggunakan GCP",
+        "exp.e5.role": "Wakil Kepala Programmer / AI Engineer",
+        "exp.e5.org": "AMV UI & Tim Robotika \u2014 Universitas Indonesia",
+        "exp.e5.l1": "Mengelola 6 anggota Divisi AI yang mengembangkan algoritma kontrol otonom untuk robot USV dan AUV",
+        "exp.e5.l2": "Berkompetisi di kompetisi internasional: AUVSI Roboboat (AS), ASEAN MATE ROV, KKCTBN",
+        "exp.e5.l3": "Membangun sistem otomasi dan kontrol menggunakan ROS, Arduino, dan computer vision",
+        "edu.tag": "Pendidikan",
+        "edu.title": "Latar Belakang Akademik",
+        "edu.e1.degree": "Gelar Master",
+        "edu.e1.field": "Teknik Elektro & Elektronika",
+        "edu.e2.degree": "Gelar Sarjana",
+        "edu.e2.school": "Universitas Indonesia",
+        "edu.e2.field": "Teknik Komputer \u00B7 IPK 3,43",
+        "skills.tag": "Stack",
+        "skills.title": "Kotak Peralatan Teknis",
+        "skills.desc": "Teknologi dan alat di bidang engineering, riset, dan pengembangan.",
+        "skills.g1": "Bahasa Pemrograman",
+        "skills.g2": "AI & Machine Learning",
+        "skills.g3": "Robotika & Hardware",
+        "skills.g4": "Alat & Platform",
+        "contact.tag": "Kontak",
+        "contact.title": "Mari membangun sesuatu bersama.",
+        "contact.subtitle": "Tersedia untuk peran engineering AI/robotika, kolaborasi riset, dan proyek konsultasi. Saat ini berbasis di Seoul, Korea Selatan.",
+    }
+    };
+
+    // ===== i18n ENGINE =====
+    let currentLang = localStorage.getItem('lang') || 'en';
+
+    function setLang(lang) {
+        currentLang = lang;
+        localStorage.setItem('lang', lang);
+        document.documentElement.lang = lang;
+        applyTranslations(lang);
+        // Update active button
+        document.querySelectorAll('.lang-btn').forEach(btn => {
+            btn.classList.toggle('active', btn.textContent.trim().toLowerCase() === lang);
         });
+    }
 
-        // Mobile nav
-        const navToggle = document.getElementById('navToggle');
-        const navLinks = document.getElementById('navLinks');
-        navToggle.addEventListener('click', () => navLinks.classList.toggle('open'));
-        function closeNav() { navLinks.classList.remove('open'); }
+    function applyTranslations(lang) {
+        const dict = T[lang] || T.en;
+        // data-i18n: textContent
+        document.querySelectorAll('[data-i18n]').forEach(el => {
+            const key = el.getAttribute('data-i18n');
+            if (dict[key] !== undefined) el.textContent = dict[key];
+        });
+        // data-i18n-html: innerHTML
+        document.querySelectorAll('[data-i18n-html]').forEach(el => {
+            const key = el.getAttribute('data-i18n-html');
+            if (dict[key] !== undefined) el.innerHTML = dict[key];
+        });
+    }
 
-        // Reveal on scroll
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) entry.target.classList.add('visible');
-            });
-        }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
-        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    // Init
+    document.addEventListener('DOMContentLoaded', () => {
+        setLang(currentLang);
+    });
+
+    // ===== NAV =====
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+        navbar.classList.toggle('scrolled', window.scrollY > 40);
+    });
+
+    const navToggle = document.getElementById('navToggle');
+    const navLinks = document.getElementById('navLinks');
+    navToggle.addEventListener('click', () => navLinks.classList.toggle('open'));
+    function closeNav() { navLinks.classList.remove('open'); }
+
+    // ===== REVEAL =====
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) entry.target.classList.add('visible');
+        });
+    }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
     </script>
 </body>
 </html>
